@@ -9,7 +9,6 @@ export async function generateWelcome() {
 }
 
 
-
 export async function compareDocuments(doc1, doc2) {
     const prompt = 
     `Compare the following two JSON objects. 
