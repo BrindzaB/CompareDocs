@@ -1,5 +1,6 @@
 import express from "express";
 import ollamaRouter from "./routes/ollamaRoutes.js";
+import tesseractRouter from "./routes/tesseractRoutes.js";
 
 const app = express();
 const PORT = 3000;
@@ -10,6 +11,7 @@ app.get("/", (req, res) => {
   res.send("Hello from backend!");
 });
 
-app.use("/api/ollama", ollamaRouter)
+app.use("/api/ollama", ollamaRouter);
+app.use("/api/tesseract", tesseractRouter);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));

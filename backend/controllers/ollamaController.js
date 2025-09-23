@@ -2,7 +2,6 @@ import { compareDocuments, generateWelcome } from "../services/ollamaService.js"
 
 export const welcome = async (req, res) => {
     try {
-
         const result = await generateWelcome();
         res.json(result.response);
 
