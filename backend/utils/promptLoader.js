@@ -16,10 +16,15 @@ try {
     console.error("Failed to load prompts.json", error);
 }
 
-export function buildPrompt(name, vars) {
-    let template = prompts[name];
-    if (!template) throw new Error(`Prompt "${name}" not found`);
+export function buildPrompt(name, vars = {}) {
+    const keys = name.split(".");
+    let template = prompts;
 
+    for (const key of keys) {
+        template = template?.[key];
+        if (!template) throw new Error(`Prompt "${name}" not found`);
+    }
+    
     return template.replace(/{{(\w+)}}/g, (_, key) => {
         return vars[key] ?? "";
     });

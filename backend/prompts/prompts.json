@@ -1,3 +1,10 @@
 {
-    "compare": "Compare the following two JSON objects.\n Rules:\n- Treat lowercase/uppercase differences as equal.\n- Treat company names with or without punctuation as the same (e.g. 'ACME Ltd' = 'acme ltd.').\n- Treat numbers like 10 and 10.0 as equal if they are numerically the same.\nDocument 1: {{doc1}}\nDocument 2: {{doc2}}\nResponse ONLY with 'EQUALS' or 'NOT EQUALS', no introduction. If 'NOT EQUALS' add the name of the key where difference was found"
+    "compare": "Compare the following two JSON objects.\n Rules:\n- Treat lowercase/uppercase differences as equal.\n- Treat company names with or without punctuation as the same (e.g. 'ACME Ltd' = 'acme ltd.').\n- Treat numbers like 10 and 10.0 as equal if they are numerically the same.\nDocument 1: {{doc1}}\nDocument 2: {{doc2}}\nResponse ONLY with 'EQUALS' or 'NOT EQUALS', no introduction. If 'NOT EQUALS' add the name of the key where difference was found",
+    "recognize": {
+        "deadline": {
+                "HUN": "Csatolom egy szkennelt számla beolvasott szövegét, a szöveg alapján mondd meg a számla fizetési határidejét. Válaszodban kizárólag a fizetési határidő dátumát add meg, semmi mást! Számla: {{invoice}}",
+                "ENG": "I am attaching a scanned invoice. Based on the text, please tell me the payment deadline for the invoice. In your reply, please only include the payment deadline date, nothing else! Invoice: {{invoice}}"
+        }
+
+    }
 }

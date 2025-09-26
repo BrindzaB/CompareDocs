@@ -12,3 +12,13 @@ export async function compareDocuments(doc1, doc2) {
         prompt: prompt
     });
 }
+
+export async function recognizeData(parsedText, lang = "HUN") {
+    const promptName = `recognize.deadline.${lang}`;
+    const prompt = buildPrompt(promptName, {invoice: parsedText});
+
+    return await ollama.generate({
+        model: "llama3.1:8b",
+        prompt
+    });
+}

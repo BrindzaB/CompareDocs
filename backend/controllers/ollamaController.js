@@ -2,7 +2,6 @@ import { compareDocuments } from "../services/ollamaService.js";
 
 
 export const compare = async (req, res) => {
-
     const {doc1, doc2} = req.body;
     
     if (!doc1 || !doc2) {
