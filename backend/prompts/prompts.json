@@ -1,0 +1,3 @@
+{
+    "compare": "Compare the following two JSON objects.\n Rules:\n- Treat lowercase/uppercase differences as equal.\n- Treat company names with or without punctuation as the same (e.g. 'ACME Ltd' = 'acme ltd.').\n- Treat numbers like 10 and 10.0 as equal if they are numerically the same.\nDocument 1: {{doc1}}\nDocument 2: {{doc2}}\nResponse ONLY with 'EQUALS' or 'NOT EQUALS', no introduction. If 'NOT EQUALS' add the name of the key where difference was found"
+}

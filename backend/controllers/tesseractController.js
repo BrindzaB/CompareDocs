@@ -10,8 +10,8 @@ export const parseDocument = async (req, res) => {
 
         const filePath = `./documents/${fileName}`;
 
-        const text = await extractTextFromDocument(filePath);
-        res.json(text);
+        const response = await extractTextFromDocument(filePath);
+        res.json(response.data.text);
 
     } catch (error) {
         res.status(500).json({error: "Failed to parse document"});

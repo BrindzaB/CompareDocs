@@ -1,17 +1,5 @@
-import { compareDocuments, generateWelcome } from "../services/ollamaService.js";
+import { compareDocuments } from "../services/ollamaService.js";
 
-export const welcome = async (req, res) => {
-    try {
-        const result = await generateWelcome();
-        res.json(result.response);
-
-    } catch (err) {
-        console.error(err);
-        res.status(500).json({
-            error: "Failed to generate message from Ollama",
-        });
-    }
-};
 
 export const compare = async (req, res) => {
 
