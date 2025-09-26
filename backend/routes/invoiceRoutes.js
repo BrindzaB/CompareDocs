@@ -1,8 +1,8 @@
 import express from "express";
-import { parseAndRecognizeInvoicesDate } from "../controllers/invoiceController.js";
+import { parseAndRecognizeInvoicesData } from "../controllers/invoiceController.js";
 
 const invoiceRouter = express.Router();
 
-invoiceRouter.post("/compare", parseAndRecognizeInvoicesDate);
+invoiceRouter.post("/process", parseAndRecognizeInvoicesData);
 
 export default invoiceRouter;
