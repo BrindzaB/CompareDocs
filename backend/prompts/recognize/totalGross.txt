@@ -1,0 +1,44 @@
+You are a strict, deterministic extractor. INPUT: ONLY the plain OCR text of one invoice (English or Hungarian). TASK: Return the invoice TOTAL GROSS AMOUNT.
+
+INPUT:
+{{invoice}}
+
+NORMALIZATION RULES:
+- Remove thousand separators (commas, dots used as thousand sep, spaces). Accept decimal separator as comma or dot in OCR — convert to dot.
+- Ensure two decimals: if the invoice shows whole number `1000` output `1000.00`; if it shows `1 234,5` output `1234.50`.
+
+SELECTION RULES (apply in order):
+1. Prefer an amount explicitly labelled as the invoice total gross, e.g. near keywords:
+   - English: "Total", "Total due", "Invoice Total", "Total (gross)", "Amount due", "Total amount", "Total payable"
+   - Hungarian: "Összesen", "Bruttó", "Bruttó összeg", "Végösszeg", "Összeg (bruttó)", "Fizetendő"
+2. If multiple candidates with those labels exist, choose the one that is nearest the relevant keyword or the one labelled "Amount due" / "Fizetendő".
+3. If no labelled total exists but there is a single largest monetary amount that is clearly a final sum, you may choose that; if this is ambiguous, return `NOT_FOUND`.
+4. Do not attempt to sum line items — prefer an explicit total label present on the invoice.
+
+OUTPUT RULES (must be followed exactly):
+- Return ONLY THE AMOUNT NOTHING ELSE: the numeric amount normalized to digits with a decimal point and **two decimal digits** (example: `1234.50`) OR the token `NOT_FOUND` if you cannot determine it unambiguously.
+- Do NOT output currency symbols, thousands separators, spaces, words, or any other text — only the normalized number or `NOT_FOUND`.
+- DO NOT RETURN THE WORD "OUTPUT", the response should only be the amount.
+
+See some examples below, follow the output rules:
+
+EXAMPLES:
+Input:
+"TOTAL DUE: $1,234.50
+VAT 20%: $205.50"
+Output:
+1234.50
+
+Input:
+"Összesen: 123 456 Ft
+(áfa 27% ...)"
+Output:
+123456.00
+
+Input:
+"Bruttó végösszeg: 1000"
+Output:
+1000.00
+
+If you cannot find a single clear total gross amount, output:
+NOT_FOUND

@@ -1,19 +1,33 @@
-import { extractTextFromDocument } from "../services/tesseractService.js";
-import { recognizeData } from "../services/ollamaService.js";
+import { processInvoice } from "../services/invoiceService.js";
+import { compareDocumentsGPT } from "../services/openaiService.js";
 
-export const parseAndRecognizeInvoicesData = async (req, res) => {
+export const parseAndRecognizeInvoiceData = async (req, res) => {
     try {
         const { fileName, lang } = req.body;
+        const filePath = `./documents/${fileName}`;
 
-        const path = `./documents/${fileName}`;
-        const parsedText = await extractTextFromDocument(path, lang);
-        const deadline = await recognizeData(parsedText, "deadline", lang);
-        const amount = await recognizeData(parsedText, "amount", lang);
-        const issued = await recognizeData(parsedText, "issued", lang);
+        const invoiceData = await processInvoice(filePath, lang);
 
-        res.json({deadline, amount, issued});
+        res.json(invoiceData);
+
     } catch (error) {
         console.error(error);
         res.status(500).json({ error: "Failed to parse and recognize data" });
     }
 };
+
+export const compareInvoices = async (req, res) => {
+    try {
+        const {fileName1, fileName2, lang} = req.body;
+
+        const invoice1 = await processInvoice(`./documents/${fileName1}`, lang);
+        const invoice2 = await processInvoice(`./documents/${fileName2}`, lang);
+
+        const result = await compareDocumentsGPT(invoice1, invoice2);
+        res.json({invoice1, invoice2, result});
+
+    } catch (error) {
+        console.error(error);
+        res.status(500).json({error: "Failed to compare invoices"});
+    }
+}

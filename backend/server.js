@@ -1,3 +1,4 @@
+import "dotenv/config";
 import express from "express";
 import ollamaRouter from "./routes/ollamaRoutes.js";
 import tesseractRouter from "./routes/tesseractRoutes.js";

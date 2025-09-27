@@ -5,26 +5,19 @@ import { fileURLToPath } from "url";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
-const promptsPath = path.join(__dirname, "../prompts/prompts.json");
+const promptsDir = path.join(__dirname, "../prompts");
 
-let prompts = {};
+export async function buildPrompt(name, vars = {}) {
+    const parts = name.split(".");
+    const filePath = path.join(promptsDir, ...parts) + ".txt";
 
-try {
-    const data = await fs.readFile(promptsPath, "utf-8");
-    prompts = JSON.parse(data);
-} catch (error) {
-    console.error("Failed to load prompts.json", error);
-}
-
-export function buildPrompt(name, vars = {}) {
-    const keys = name.split(".");
-    let template = prompts;
-
-    for (const key of keys) {
-        template = template?.[key];
-        if (!template) throw new Error(`Prompt "${name}" not found`);
+    let template;
+    try {
+        template = await fs.readFile(filePath, "utf-8");
+    } catch (error) {
+        throw new Error(`Prompt file "${filePath}" not found`);
     }
-    
+
     return template.replace(/{{(\w+)}}/g, (_, key) => {
         return vars[key] ?? "";
     });

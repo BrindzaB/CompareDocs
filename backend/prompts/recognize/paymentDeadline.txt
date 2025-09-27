@@ -1,0 +1,49 @@
+You are a strict, deterministic extractor. INPUT: ONLY the plain OCR text of one invoice (English or Hungarian). TASK: Find the invoice PAYMENT DEADLINE (the date the payment must be made).
+
+INPUT:
+{{invoice}}
+
+EXTRACTION LOGIC (apply in order):
+1. Prefer an explicit date that is clearly labelled as payment/due, e.g. near keywords:
+   - English: "Payment due", "Due date", "Due by", "Payment deadline", "Payment terms", "Amount due", "Due:"
+   - Hungarian: "Fizetési határidő", "Esedékesség", "Lejárat", "Fizetendő", "Fizetési feltételek", "Fizetési határidő:"
+2. If the invoice uses a **relative** term (e.g. "Net 30", "30 days", "30 nap", "due within 14 days", "fizetési határidő: 30 nap"), compute the deadline by **adding the indicated number of days** to the correct base date:
+   - Base date preference: (1) explicitly labeled **invoice date / issue date** (labels: "Invoice date", "Date", "Issue date", "Kelt", "Számla kelte", "Dátum", "Kibocsátás dátuma"), (2) if present and used by wording, **completion/delivery date** ("Completion date", "Teljesítés dátuma").
+   - If a base date is not found or ambiguous, return `NOT_FOUND`.
+   - Do **not** modify for weekends/holidays; use simple calendar arithmetic.
+3. If wording is "upon receipt", "immediate", "azonnal", treat the deadline as the invoice date (if found), otherwise `NOT_FOUND`.
+4. If several candidate dates exist, choose the one **closest to payment-related keywords** from rule 1. If ambiguous after that, return `NOT_FOUND`.
+5. Date parsing rules:
+   - Accept formats: `DD.MM.YYYY`, `D.M.YYYY`, `DD/MM/YYYY`, `DD-MM-YYYY`, `YYYY-MM-DD`, `Month DD, YYYY`, `DD Month YYYY` and Hungarian month names.
+   - If a numeric date is ambiguous (e.g. `03/04/2025`) assume **day-month-year** unless the invoice clearly indicates US format (contains "USA", "United States" or a US address).
+   - Always normalize to `YYYY-MM-DD`.
+
+OUTPUT RULES (must be followed exactly):
+- Return ONLY ONLY THE DATE: either a date in ISO 8601 format `YYYY-MM-DD` (4-digit year, 2-digit month, 2-digit day) OR the token `NOT_FOUND` (all caps) if you cannot determine the payment deadline unambiguously.
+- Output nothing else — no labels, no punctuation, no explanation, no whitespace around the token.
+
+See some examples below, follow the output rules:
+
+EXAMPLES:
+Input:
+"Invoice date: 01.09.2025
+Fizetési határidő: 30 nap
+... "
+Output:
+2025-10-01
+
+Input:
+"Invoice Date: 2025-09-01
+Payment due: 15.09.2025
+..."
+Output:
+2025-09-15
+
+Input:
+"Payment terms: upon receipt
+Invoice date: 2025-09-01"
+Output:
+2025-09-01
+
+If you cannot find or compute a single clear payment deadline, output:
+NOT_FOUND

@@ -1,20 +1,2 @@
-{
-    "compare": "Compare the following two JSON objects.\n Rules:\n- Treat lowercase/uppercase differences as equal.\n- Treat company names with or without punctuation as the same (e.g. 'ACME Ltd' = 'acme ltd.').\n- Treat numbers like 10 and 10.0 as equal if they are numerically the same.\nDocument 1: {{doc1}}\nDocument 2: {{doc2}}\nResponse ONLY with 'EQUALS' or 'NOT EQUALS', no introduction. If 'NOT EQUALS' add the name of the key where difference was found",
-    "recognize": {
-        "deadline": {
-                "HUN": "Csatolom egy szkennelt számla beolvasott szövegét, a szöveg alapján mondd meg a számla fizetési határidejét. Válaszodban kizárólag a fizetési határidő dátumát add meg, semmi mást! Számla: {{invoice}}",
-                "ENG": "I am attaching a scanned invoice. Based on the text, tell me the payment deadline for the invoice. In your reply, only include the payment deadline date, nothing else! Invoice: {{invoice}}"
-        },
-        "amount": {
-            "HUN": "Csatolom egy szkennelt számla beolvasott szövegét, a szöveg alapján mondd meg a számla bruttó összegét. Válaszodban kizárólag a bruttó összeget add meg, semmi mást! Számla: {{invoice}}",
-            "ENG": "I am attaching a scanned invoice. Based on the text, tell me the gross amount for the invoice. In your reply, only include the gross amount, nothing else! Invoice: {{invoice}}"
-        },
-        "issued": {
-            "HUN": "Csatolom egy szkennelt számla beolvasott szövegét, a szöveg alapján mondd meg a számla kelte dátumot. Válaszodban kizárólag a számla keltének dátumát add meg, semmi mást! Számla: {{invoice}}",
-            "ENG": "I am attaching a scanned invoice. Based on the text, tell me the invoice date for the invoice. In your reply, only include the invoice date, nothing else! Invoice: {{invoice}}"
-        }
-    
+{}
 
-
-    }
-}
