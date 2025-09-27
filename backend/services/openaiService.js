@@ -8,7 +8,6 @@ const openai = new OpenAI({
 export async function recognizeDataGPT(parsedText){
     
     const prompt = await buildPrompt("recognize/invoiceFields", {invoice: parsedText});
-
     const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [
@@ -17,7 +16,6 @@ export async function recognizeDataGPT(parsedText){
         ],
         temperature: 0,
     });
-
     const text = response.choices[0].message.content.trim();
 
     try {
