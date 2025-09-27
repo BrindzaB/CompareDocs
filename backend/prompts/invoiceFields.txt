@@ -38,6 +38,7 @@ EXTRACTION LOGIC:
     2. If multiple candidates with those labels exist, choose the one that is nearest the relevant keyword or the one labelled "Amount due" / "Fizetendő".
     3. If no labelled total exists but there is a single largest monetary amount that is clearly a final sum, you may choose that; if this is ambiguous, return `NOT_FOUND`.
     4. Do not attempt to sum line items — prefer an explicit total label present on the invoice.
+    5. Remove all dots, commas, spaces, and currency symbols from the extracted number. Return only the numeric value as a number (e.g., 1000.50, not "1.000,50 HUF").
 
 - For invoiceDate, follow previous rules about invoice issue date keywords:
     1. Prefer a date explicitly labelled as invoice/issue date. Common keywords:

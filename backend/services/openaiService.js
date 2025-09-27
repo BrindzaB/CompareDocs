@@ -7,7 +7,7 @@ const openai = new OpenAI({
 
 export async function recognizeDataGPT(parsedText){
     
-    const prompt = await buildPrompt("recognize/invoiceFields", {invoice: parsedText});
+    const prompt = await buildPrompt("invoiceFields", {invoice: parsedText});
     const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
         messages: [

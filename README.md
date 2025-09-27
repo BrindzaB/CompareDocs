@@ -3,3 +3,6 @@ This is an experiment project to learn how different third-party APIs can be imp
 
 # CompareDocs main goal:
 Reading and comparing documents using AI. Useful for time consuming and repetitive task like invoice comparison etc.
+
+# Warning
+Since the application is using OpenAI LLM, you will need a valid API key to be able to use the app.
