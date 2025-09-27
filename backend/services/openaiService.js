@@ -5,9 +5,9 @@ const openai = new OpenAI({
     apiKey: process.env.OPENAI_API_KEY,
 });
 
-export async function recognizeDataGPT(parsedText, field){
-    const promptName = `recognize/${field}`;
-    const prompt = await buildPrompt(promptName, {invoice: parsedText});
+export async function recognizeDataGPT(parsedText){
+    
+    const prompt = await buildPrompt("recognize/invoiceFields", {invoice: parsedText});
 
     const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
@@ -18,7 +18,18 @@ export async function recognizeDataGPT(parsedText, field){
         temperature: 0,
     });
 
-    return response.choices[0].message.content.trim();
+    const text = response.choices[0].message.content.trim();
+
+    try {
+        return JSON.parse(text);
+    } catch (error) {
+        console.error("Failed to parse GPT response: ", error);
+        return {
+            paymentDeadline: "Not Found",
+            totalGross: "Not Found",
+            invoiceDate: "Not Found"
+        };
+    }
 }
 
 export async function compareDocumentsGPT(doc1, doc2) {
