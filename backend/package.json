@@ -11,6 +11,7 @@
     "cors": "^2.8.5",
     "dotenv": "^17.2.2",
     "express": "^5.1.0",
+    "multer": "^2.0.2",
     "ollama": "^0.5.18",
     "openai": "^5.23.1",
     "tesseract.js": "^6.0.1"
