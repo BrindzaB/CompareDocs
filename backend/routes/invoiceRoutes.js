@@ -6,6 +6,7 @@ const invoiceRouter = express.Router();
 
 invoiceRouter.post("/process", parseAndRecognizeInvoiceData);
 invoiceRouter.post("/compare", compareInvoices);
+
 invoiceRouter.post("/upload", upload.fields([
     {name: "invoice1", maxCount: 1},
     {name: "invoice2", maxCount: 1}
