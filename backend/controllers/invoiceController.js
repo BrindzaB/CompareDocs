@@ -3,8 +3,8 @@ import { compareDocumentsGPT } from "../services/openaiService.js";
 
 export const parseAndRecognizeInvoiceData = async (req, res) => {
     try {
-        const { fileName, lang } = req.body;
-        const filePath = `./documents/${fileName}`;
+        const lang = req.body.lang || "ENG";
+        const filePath = req.file.path;
 
         const invoiceData = await processInvoice(filePath, lang);
 
@@ -18,10 +18,17 @@ export const parseAndRecognizeInvoiceData = async (req, res) => {
 
 export const compareInvoices = async (req, res) => {
     try {
-        const {fileName1, fileName2, lang} = req.body;
+        const lang = req.body.lang || "ENG";
 
-        const invoice1 = await processInvoice(`./documents/${fileName1}`, lang);
-        const invoice2 = await processInvoice(`./documents/${fileName2}`, lang);
+        if (!req.files || !req.files.invoice1 || !req.files.invoice2) {
+            return res.status(400).json({error: "Two invoice files are required"});
+        }
+
+        const filePath1 = req.files.invoice1[0].path;
+        const filePath2 = req.files.invoice2[0].path;
+
+        const invoice1 = await processInvoice(filePath1, lang);
+        const invoice2 = await processInvoice(filePath2, lang);
 
         const result = await compareDocumentsGPT(invoice1, invoice2);
         res.json({invoice1, invoice2, result});
