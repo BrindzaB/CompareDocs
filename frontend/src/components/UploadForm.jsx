@@ -1,8 +1,6 @@
 import { useState } from "react";
 import { compareUploadedFiles } from "../fetch/uploadFetching";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUpload, faCheck } from "@fortawesome/free-solid-svg-icons";
-import AIFog from "./design/AIFog";
+import FileInput from "./FileInput";
 
 
 function UploadForm() {
@@ -41,48 +39,11 @@ function UploadForm() {
                 <div className="text-red-500 text-center font-semibold mb-4">{error}</div>
             )}
             <div className="flex gap-40 h-full">
-                <div className="flex items-center justify-center w-full">
-                    {!invoice1 ? (
-                        <div className="flex items-center justify-center w-full h-128 relative">
-                            <AIFog />
-                            <label htmlFor="invoice1" className="flex flex-col items-center justify-center w-full h-128 rounded-2xl cursor-pointer bg-white hover:bg-gray-100 transition-all relative opacity-80">
-                                <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <FontAwesomeIcon icon={faUpload} className="text-gray-500 text-2xl mb-2" />
-                                    <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
-                                    <p className="text-xs text-gray-500">Upload a document</p>
-                                </div>
-                                <input id="invoice1" type="file" className="hidden" onChange={(e) => setInvoice1(e.target.files[0])}/>
-                            </label>
-                        </div>
-
-                    ) : (
-                        <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center animate-scaleIn shadow-md">
-                            <FontAwesomeIcon icon={faCheck} className="text-3xl text-white" />
-                        </div>
-                    )}
-                </div> 
+                <FileInput id="invoice1" invoice={invoice1} onChange={(e) => setInvoice1(e.target.files[0])} />
                 <div className="flex items-center justify-center">
                     <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Compare</button>
                 </div>
-                <div className="flex items-center justify-center w-full">
-                    {!invoice2 ? (
-                        <div className="flex items-center justify-center w-full h-128 relative">
-                            <AIFog />
-                            <label htmlFor="invoice2" className="flex flex-col items-center justify-center w-full h-128 rounded-2xl cursor-pointer bg-white hover:bg-gray-100 transition-all relative opacity-80">
-                                <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                    <FontAwesomeIcon icon={faUpload} className="text-gray-500 text-2xl mb-2" />
-                                    <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
-                                    <p className="text-xs text-gray-500">Upload a document</p>
-                                </div>
-                                <input id="invoice2" type="file" className="hidden" onChange={(e) => setInvoice2(e.target.files[0])} />
-                            </label>
-                        </div>
-                    ) : (
-                        <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center animate-scaleIn shadow-md">
-                            <FontAwesomeIcon icon={faCheck} className="text-3xl text-white" />
-                        </div>
-                    )}
-                </div> 
+                <FileInput id="invoice2" invoice={invoice2} onChange={(e) => setInvoice2(e.target.files[0])} />
             </div>
         </form>
     )
