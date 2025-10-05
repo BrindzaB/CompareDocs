@@ -19,3 +19,171 @@
 .animate-scaleIn {
   animation: scaleIn 0.2s ease-in-out forwards;
 }
+
+@keyframes scaleLeftUp {
+  0% {
+    transform: translate(0px, 0px) scale(1); 
+  }
+  50% {
+    transform: translateX(-20px) translateY(-20px) scale(1.1); 
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+.animate-scaleLeftUp {
+  animation-name: scaleLeftUp;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes scaleUp {
+  0% {
+    transform: translateY(0px) scale(1);
+  }
+  50% {
+    transform: translateY(-20px) scale(1.1);
+  }
+  100% {
+    transform: translateY(0px) scale(1);
+  }
+}
+.animate-scaleUp {
+  animation-name: scaleUp;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes scaleRightUp {
+  0% {
+    transform: translate(0px, 0px) scale(1); 
+  }
+  50% {
+    transform: translateX(20px) translateY(-20px) scale(1.1); 
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+.animate-scaleRightUp {
+  animation-name: scaleRightUp;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes scaleLeftDown {
+  0% {
+    transform: translate(0px, 0px) scale(1); 
+  }
+  50% {
+    transform: translateX(-20px) translateY(20px) scale(1.1); 
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+.animate-scaleLeftDown {
+  animation-name: scaleLeftDown;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes scaleDown {
+  0% {
+    transform: translate(0px, 0px) scale(1); 
+  }
+  50% {
+    transform: translateY(20px) scale(1.1); 
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+.animate-scaleDown {
+  animation-name: scaleDown;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes scaleRightDown {
+  0% {
+    transform: translate(0px, 0px) scale(1); 
+  }
+  50% {
+    transform: translateX(20px) translateY(20px) scale(1.1); 
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+.animate-scaleRightDown {
+  animation-name: scaleRightDown;
+  animation-duration: 2s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes scaleLeft {
+  0% {
+    transform: translate(0px, 0px) scale(1); 
+  }
+  50% {
+    transform: translateX(-20px) scale(1.1); 
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+.animate-scaleLeft {
+  animation-name: scaleLeft;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes scaleRight {
+    0% {
+    transform: translate(0px, 0px) scale(1); 
+  }
+  50% {
+    transform: translateX(20px) scale(1.1); 
+  }
+  100% {
+    transform: translate(0px, 0px) scale(1);
+  }
+}
+.animate-scaleRight {
+  animation-name: scaleRight;
+  animation-duration: 3s;
+  animation-timing-function: ease-in-out;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+
+
+@layer utilities {
+  .animation-delay-1000 {
+    animation-delay: 1s
+  }
+
+  .animation-delay-2000 {
+    animation-delay: 2s;
+  }
+
+  .animation-delay-3000 {
+    animation-delay: 3s;
+  }
+}

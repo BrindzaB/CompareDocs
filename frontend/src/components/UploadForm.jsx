@@ -39,17 +39,29 @@ function UploadForm() {
             {error && (
                 <div className="text-red-500 text-center font-semibold mb-4">{error}</div>
             )}
-            <div className="flex gap-20 h-full">
+            <div className="flex gap-40 h-full">
                 <div className="flex items-center justify-center w-full">
                     {!invoice1 ? (
-                        <label htmlFor="invoice1" className="flex flex-col items-center justify-center w-full h-128 border border-gray-300 rounded-lg shadow-sm cursor-pointer bg-white hover:bg-gray-100 transition-all">
-                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                <FontAwesomeIcon icon={faUpload} className="text-gray-500 text-2xl mb-2" />
-                                <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
-                                <p className="text-xs text-gray-500">Upload a document</p>
-                            </div>
-                            <input id="invoice1" type="file" className="hidden" onChange={(e) => setInvoice1(e.target.files[0])}/>
-                        </label>
+                        <div className="flex items-center justify-center w-full h-128 relative">
+                            <div className="absolute -top-5 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleUp"></div>
+                            <div className="absolute -top-5 -left-10 bg-orange-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleLeftUp animation-delay-1000"></div>
+                            <div className="absolute -top-5 -right-10 bg-red-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleRightUp animation-delay-2000"></div>
+                            <div className="absolute -left-10 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleLeft"></div>
+                            <div className="absolute bg-red-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply"></div>
+                            <div className="absolute -right-10 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleRight"></div>
+                            <div className="absolute -bottom-5 bg-purple-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleDown animation-delay-3000"></div>
+                            <div className="absolute -bottom-5 -left-10 bg-red-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleLeftDown"></div>
+                            <div className="absolute -bottom-5 -right-10 bg-orange-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleRightDown animation-delay-1000"></div>
+                            <label htmlFor="invoice1" className="flex flex-col items-center justify-center w-full h-128 rounded-2xl cursor-pointer bg-white hover:bg-gray-100 transition-all relative opacity-80">
+                                <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <FontAwesomeIcon icon={faUpload} className="text-gray-500 text-2xl mb-2" />
+                                    <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
+                                    <p className="text-xs text-gray-500">Upload a document</p>
+                                </div>
+                                <input id="invoice1" type="file" className="hidden" onChange={(e) => setInvoice1(e.target.files[0])}/>
+                            </label>
+                        </div>
+
                     ) : (
                         <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center animate-scaleIn shadow-md">
                             <FontAwesomeIcon icon={faCheck} className="text-3xl text-white" />
@@ -61,14 +73,25 @@ function UploadForm() {
                 </div>
                 <div className="flex items-center justify-center w-full">
                     {!invoice2 ? (
-                        <label htmlFor="invoice2" className="flex flex-col items-center justify-center w-full h-128 border border-gray-300 rounded-lg shadow-sm cursor-pointer bg-white hover:bg-gray-100">
-                            <div className="flex flex-col items-center justify-center pt-5 pb-6">
-                                <FontAwesomeIcon icon={faUpload} className="text-gray-500 text-2xl mb-2" />
-                                <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
-                                <p className="text-xs text-gray-500">Upload a document</p>
-                            </div>
-                            <input id="invoice2" type="file" className="hidden" onChange={(e) => setInvoice2(e.target.files[0])} />
-                        </label>
+                        <div className="flex items-center justify-center w-full h-128 relative">
+                            <div className="absolute -top-5 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleUp"></div>
+                            <div className="absolute -top-5 -left-10 bg-orange-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleLeftUp animation-delay-1000"></div>
+                            <div className="absolute -top-5 -right-10 bg-red-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleRightUp animation-delay-2000"></div>
+                            <div className="absolute -left-10 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleLeft"></div>
+                            <div className="absolute bg-red-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply"></div>
+                            <div className="absolute -right-10 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleRight"></div>
+                            <div className="absolute -bottom-5 bg-purple-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleDown animation-delay-3000"></div>
+                            <div className="absolute -bottom-5 -left-10 bg-red-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleLeftDown"></div>
+                            <div className="absolute -bottom-5 -right-10 bg-orange-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleRightDown animation-delay-1000"></div>
+                            <label htmlFor="invoice2" className="flex flex-col items-center justify-center w-full h-128 rounded-2xl cursor-pointer bg-white hover:bg-gray-100 transition-all relative opacity-80">
+                                <div className="flex flex-col items-center justify-center pt-5 pb-6">
+                                    <FontAwesomeIcon icon={faUpload} className="text-gray-500 text-2xl mb-2" />
+                                    <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
+                                    <p className="text-xs text-gray-500">Upload a document</p>
+                                </div>
+                                <input id="invoice2" type="file" className="hidden" onChange={(e) => setInvoice2(e.target.files[0])} />
+                            </label>
+                        </div>
                     ) : (
                         <div className="w-24 h-24 bg-green-500 rounded-full flex items-center justify-center animate-scaleIn shadow-md">
                             <FontAwesomeIcon icon={faCheck} className="text-3xl text-white" />
