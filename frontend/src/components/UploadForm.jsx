@@ -2,6 +2,7 @@ import { useState } from "react";
 import { compareUploadedFiles } from "../fetch/uploadFetching";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUpload, faCheck } from "@fortawesome/free-solid-svg-icons";
+import AIFog from "./design/AIFog";
 
 
 function UploadForm() {
@@ -43,15 +44,7 @@ function UploadForm() {
                 <div className="flex items-center justify-center w-full">
                     {!invoice1 ? (
                         <div className="flex items-center justify-center w-full h-128 relative">
-                            <div className="absolute -top-5 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleUp"></div>
-                            <div className="absolute -top-5 -left-10 bg-orange-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleLeftUp animation-delay-1000"></div>
-                            <div className="absolute -top-5 -right-10 bg-red-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleRightUp animation-delay-2000"></div>
-                            <div className="absolute -left-10 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleLeft"></div>
-                            <div className="absolute bg-red-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply"></div>
-                            <div className="absolute -right-10 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleRight"></div>
-                            <div className="absolute -bottom-5 bg-purple-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleDown animation-delay-3000"></div>
-                            <div className="absolute -bottom-5 -left-10 bg-red-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleLeftDown"></div>
-                            <div className="absolute -bottom-5 -right-10 bg-orange-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleRightDown animation-delay-1000"></div>
+                            <AIFog />
                             <label htmlFor="invoice1" className="flex flex-col items-center justify-center w-full h-128 rounded-2xl cursor-pointer bg-white hover:bg-gray-100 transition-all relative opacity-80">
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                     <FontAwesomeIcon icon={faUpload} className="text-gray-500 text-2xl mb-2" />
@@ -74,15 +67,7 @@ function UploadForm() {
                 <div className="flex items-center justify-center w-full">
                     {!invoice2 ? (
                         <div className="flex items-center justify-center w-full h-128 relative">
-                            <div className="absolute -top-5 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleUp"></div>
-                            <div className="absolute -top-5 -left-10 bg-orange-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleLeftUp animation-delay-1000"></div>
-                            <div className="absolute -top-5 -right-10 bg-red-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleRightUp animation-delay-2000"></div>
-                            <div className="absolute -left-10 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleLeft"></div>
-                            <div className="absolute bg-red-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply"></div>
-                            <div className="absolute -right-10 bg-purple-300 h-78 w-78 rounded-full blur-xl mix-blend-multiply animate-scaleRight"></div>
-                            <div className="absolute -bottom-5 bg-purple-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleDown animation-delay-3000"></div>
-                            <div className="absolute -bottom-5 -left-10 bg-red-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleLeftDown"></div>
-                            <div className="absolute -bottom-5 -right-10 bg-orange-300 h-78 w-78 rounded-full blur-2xl mix-blend-multiply animate-scaleRightDown animation-delay-1000"></div>
+                            <AIFog />
                             <label htmlFor="invoice2" className="flex flex-col items-center justify-center w-full h-128 rounded-2xl cursor-pointer bg-white hover:bg-gray-100 transition-all relative opacity-80">
                                 <div className="flex flex-col items-center justify-center pt-5 pb-6">
                                     <FontAwesomeIcon icon={faUpload} className="text-gray-500 text-2xl mb-2" />
