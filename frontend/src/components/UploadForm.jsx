@@ -41,7 +41,7 @@ function UploadForm() {
             <div className="flex gap-40 h-full">
                 <FileInput id="invoice1" invoice={invoice1} onChange={(e) => setInvoice1(e.target.files[0])} />
                 <div className="flex items-center justify-center">
-                    <button type="submit" className="text-white bg-blue-700 hover:bg-blue-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-full text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800">Compare</button>
+                    <button type="submit" className="h-25 w-25 text-white bg-gray-900 hover:bg-gray-800 rounded-full text-md font-semibold text-center shadow-sm">Compare</button>
                 </div>
                 <FileInput id="invoice2" invoice={invoice2} onChange={(e) => setInvoice2(e.target.files[0])} />
             </div>
