@@ -4,7 +4,7 @@ import { StrictMode } from 'react';
 
 import './index.css';
 import App from './App.jsx';
-import Home from './components/Home.jsx';
+import HomePage from './components/HomePage.jsx';
 
 const router = createBrowserRouter([
     {
@@ -13,7 +13,7 @@ const router = createBrowserRouter([
         children: [
             {
                 path: "/",
-                element: <Home />,
+                element: <HomePage />,
             }
         ]
     }

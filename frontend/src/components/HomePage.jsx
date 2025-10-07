@@ -1,9 +1,9 @@
 import UploadForm from "./UploadForm";
 
-function Home() {
+function HomePage() {
     return (
         <UploadForm />
     )
 }
 
-export default Home;
+export default HomePage;
