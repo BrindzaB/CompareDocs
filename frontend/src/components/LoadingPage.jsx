@@ -1,4 +1,5 @@
 import LoaderElement from "./LoaderElement";
+import AIFog from "./design/AIFog";
 
 function LoadingPage() {
     return (

@@ -32,8 +32,9 @@ function LoaderElement({ size = 240, strokeWidth = 20, duration = 5000 }) {
         <svg width={size} height={size}>
             <defs>
                 <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="100%">
-                    <stop offset="0%" stopColor="#FFAC1C" />
-                    <stop offset="100%" stopColor="#7F00FF" />
+                    <stop offset="0%" stopColor="#FDBA74" />
+                    <stop offset="50%" stopColor="#FCA5A5" />
+                    <stop offset="100%" stopColor="#C084FC" />
                 </linearGradient>
             </defs>
 
@@ -68,7 +69,7 @@ function LoaderElement({ size = 240, strokeWidth = 20, duration = 5000 }) {
                 textAnchor="middle"
                 className="fill-gray-700 text-2xl font-semibold"
                 >
-                Analyzing...
+                {progress !== 100 ? ("Analyzing...") : ("Done")}
             </text>
         </svg>
     </div>
