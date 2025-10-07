@@ -4,11 +4,11 @@ import AIFog from "./design/AIFog";
 
 function FileInput({id, invoice, onChange}) {
     return (
-        <div className="flex items-center justify-center w-full">
+        <div className="flex items-center justify-center min-w-[300px] lg:w-[400px]">
             {!invoice ? (
-                <div className="flex items-center justify-center w-full h-128 relative">
+                <div className="flex items-center justify-center w-full h-96 lg:h-128 relative">
                     <AIFog />
-                    <label htmlFor={id} className="flex flex-col items-center justify-center w-full h-128 rounded-2xl cursor-pointer bg-white shadow-md hover:bg-gray-100 transition-all relative opacity-80">
+                    <label htmlFor={id} className="flex flex-col items-center justify-center w-full h-full rounded-2xl cursor-pointer bg-white shadow-md hover:bg-gray-100 transition-all relative opacity-80">
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             <FontAwesomeIcon icon={faUpload} className="text-gray-500 text-2xl mb-2" />
                             <p className="mb-2 text-sm text-gray-500"><span className="font-semibold">Click to upload</span></p>
