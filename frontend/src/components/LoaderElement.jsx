@@ -33,7 +33,7 @@ function LoaderElement({ size = 240, strokeWidth = 20, duration = 5000 }) {
             <defs>
                 <linearGradient id="gradientStroke" x1="0%" y1="0%" x2="100%" y2="100%">
                     <stop offset="0%" stopColor="#FDBA74" />
-                    <stop offset="50%" stopColor="#FCA5A5" />
+                    <stop offset="50%" stopColor="#EF4444" />
                     <stop offset="100%" stopColor="#C084FC" />
                 </linearGradient>
             </defs>
