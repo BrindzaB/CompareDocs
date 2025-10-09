@@ -3,7 +3,7 @@ import ResultCard from "./ResultCards";
 
 function ResultPage() {
     return (
-        <div className="py-20 w-full min-h-screen flex flex-col bg-white overflow-y-auto justify-evenly">
+        <div className="pt-20 pb-10 w-full min-h-screen flex flex-col bg-white overflow-y-auto justify-evenly">
             <div className="py-20 flex items-center justify-center">
                 <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900">Matching documents</h1>
             </div>

@@ -1,6 +1,6 @@
 function ResultCard({title, attributeName1, attributeName2, attributeName3}) {
     return (
-        <div className="w-[300px] h-[400px] md:w-[400px] md:h-[500px] lg:w-[500px] lg:h-[600px] p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700 flex flex-col">
+        <div className="w-[300px] h-[400px] md:w-[400px] md:h-[500px] lg:w-[500px] lg:h-[550px] p-4 bg-white border border-gray-200 rounded-lg shadow-md sm:p-8 dark:bg-gray-800 dark:border-gray-700 flex flex-col">
             <div className="flex items-center justify-center mb-4">
                 <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
                     {title}
