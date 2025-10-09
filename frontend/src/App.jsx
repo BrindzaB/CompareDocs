@@ -3,11 +3,13 @@ import Navbar from "./components/Navbar"
 
 function App() {
   return (
-      <>
-          <Navbar />
-          <Outlet />
-      </>
-  )
+    <div className="flex flex-col h-screen">
+      <Navbar />
+      <main className="flex-grow overflow-auto">
+        <Outlet />
+      </main>
+    </div>
+  );
 }
 
-export default App
+export default App;
