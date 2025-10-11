@@ -3,12 +3,11 @@ import { compareUploadedFiles } from "../fetch/uploadFetching";
 import FileInput from "./FileInput";
 
 
-function UploadForm() {
+function UploadForm({onUploadStart, onUploadComplete}) {
 
     const [invoice1, setInvoice1] = useState(null);
     const [invoice2, setInvoice2] = useState(null);
     const [error, setError] = useState("");
-    const [result, setResult] = useState(null);
 
     async function handleSubmit(e) {
         e.preventDefault();
@@ -18,7 +17,7 @@ function UploadForm() {
         }
 
         setError("");
-        setResult(null);
+        onUploadStart();
 
         const formData = new FormData();
         formData.append("invoice1", invoice1);
@@ -27,7 +26,7 @@ function UploadForm() {
 
         try {
             const data = await compareUploadedFiles(formData);
-            setResult(data);
+            onUploadComplete(data);
         } catch (error) {
             setError(error.message);
         }

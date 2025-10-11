@@ -1,6 +1,6 @@
 export async function compareUploadedFiles(formData) {
     try {
-        const response = await fetch("/api/invoices/upload", {
+        const response = await fetch("/api/invoices/test", {
             method: "POST",
             body: formData
         });

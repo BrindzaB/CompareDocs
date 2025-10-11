@@ -38,3 +38,22 @@ export const compareInvoices = async (req, res) => {
         res.status(500).json({error: "Failed to compare invoices"});
     }
 }
+
+export const dummyResponse = (req,res) => {
+
+    setTimeout(() => {
+        res.send({
+            "invoice1": {
+                "paymentDeadline": "2024-03-17",
+                "totalGross": 8950,
+                "invoiceDate": "2024-03-17"
+            },
+            "invoice2": {
+                "paymentDeadline": "2024-03-17",
+                "totalGross": 8950,
+                "invoiceDate": "2024-03-17"
+            },
+            "result": "MATCHING"
+        });
+    }, 8000);
+};

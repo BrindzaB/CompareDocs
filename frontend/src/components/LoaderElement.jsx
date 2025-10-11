@@ -69,7 +69,7 @@ function LoaderElement({ size = 240, strokeWidth = 20, duration = 5000 }) {
                 textAnchor="middle"
                 className="fill-gray-700 text-2xl font-semibold"
                 >
-                {progress !== 100 ? ("Analyzing...") : ("Done")}
+                {progress !== 100 ? ("Analyzing...") : ("Waiting...")}
             </text>
         </svg>
     </div>
