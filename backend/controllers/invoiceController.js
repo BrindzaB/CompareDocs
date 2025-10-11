@@ -45,15 +45,15 @@ export const dummyResponse = (req,res) => {
         res.send({
             "invoice1": {
                 "paymentDeadline": "2024-03-17",
-                "totalGross": 8950,
+                "totalGross": 168500.99,
                 "invoiceDate": "2024-03-17"
             },
             "invoice2": {
                 "paymentDeadline": "2024-03-17",
-                "totalGross": 8950,
+                "totalGross": 168500.99,
                 "invoiceDate": "2024-03-17"
             },
             "result": "MATCHING"
         });
-    }, 8000);
+    }, 2000);
 };
