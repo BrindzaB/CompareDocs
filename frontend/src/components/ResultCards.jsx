@@ -6,46 +6,46 @@ function ResultCard({title, paymentDate, invoiceDate, totalAmount}) {
       
       <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-orange-400 to-red-400 rounded-2xl opacity-75 blur-lg"></div>
       
-      <div className="relative w-full h-full p-4 bg-white rounded-2xl shadow-md sm:p-8 flex flex-col opacity-80">
+      <div className="relative w-full h-full p-4 bg-white rounded-2xl shadow-md sm:p-8 flex flex-col opacity-90 dark:bg-gray-900">
         <div className="flex items-center justify-center mb-4">
-          <h5 className="text-xl font-bold leading-none text-gray-900">
+          <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
             {title}
           </h5>
         </div>
         <div className="flow-root flex-1 h-full mb-10">
           <ul role="list" className="h-full flex flex-col justify-evenly">
-            <li className="py-3 sm:py-4 border-b border-gray-200">
+            <li className="py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center">
                 <div className="flex-1 min-w-0 ms-4">
-                  <p className="text-lg font-normal text-gray-900 truncate">
+                  <p className="text-lg font-normal text-gray-900 truncate dark:text-white">
                     Payment date
                   </p>
                 </div>
-                <div className="inline-flex items-center text-base font-semibold text-gray-900">
+                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                   {paymentDate || 'N/A'}
                 </div>
               </div>
             </li>
-            <li className="py-3 sm:py-4 border-b border-gray-200">
+            <li className="py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center">
                 <div className="flex-1 min-w-0 ms-4">
-                  <p className="text-lg font-normal text-gray-900 truncate">
+                  <p className="text-lg font-normal text-gray-900 truncate dark:text-white">
                     Invoice date
                   </p>
                 </div>
-                <div className="inline-flex items-center text-base font-semibold text-gray-900">
+                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                   {invoiceDate || 'N/A'}
                 </div>
               </div>
             </li>
-            <li className="py-3 sm:py-4 border-b border-gray-200">
+            <li className="py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center">
                 <div className="flex-1 min-w-0 ms-4">
-                  <p className="text-lg font-normal text-gray-900 truncate">
+                  <p className="text-lg font-normal text-gray-900 truncate dark:text-white">
                     Total amount
                   </p>
                 </div>
-                <div className="inline-flex items-center text-base font-semibold text-gray-900">
+                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
                   {formatNumberToCurrency(totalAmount)}
                 </div>
               </div>

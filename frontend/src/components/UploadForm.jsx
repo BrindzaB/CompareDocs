@@ -33,14 +33,14 @@ function UploadForm({onUploadStart, onUploadComplete}) {
     }
 
     return (
-        <form className="flex justify-center items-center w-full min-h-screen px-10 sm:px-10 lg:px-20 pt-40 pb-20 overflow-y-auto" onSubmit={handleSubmit}>
+        <form className="flex justify-center items-center w-full min-h-screen px-10 sm:px-10 lg:px-20 pt-40 pb-20 overflow-y-auto bg-transparent" onSubmit={handleSubmit}>
             {error && (
                 <div className="text-red-500 text-center font-semibold mb-4">{error}</div>
             )}
-            <div className="flex flex-col lg:flex-row gap-20 lg:gap-30 2xl:gap-40 items-center justify-between">
+            <div className="flex flex-col lg:flex-row gap-20 lg:gap-30 2xl:gap-40 items-center justify-between ">
                 <FileInput id="invoice1" invoice={invoice1} onChange={(e) => setInvoice1(e.target.files[0])} />
                 <div className="flex items-center justify-center">
-                    <button type="submit" className="h-12 w-24 text-sm lg:h-15 lg:w-30 text-white bg-gray-900 hover:bg-gray-800 rounded-full lg:text-lg font-medium text-center transition-transform duration-200 ease-in-out transform hover:scale-105">Compare</button>
+                    <button type="submit" className="h-12 w-24 text-sm lg:h-15 lg:w-30 text-white bg-gray-900 hover:bg-gray-800 rounded-full lg:text-lg font-medium text-center transition-transform duration-200 ease-in-out transform hover:scale-105 dark:border dark:border-gray-700">Compare</button>
                 </div>
                 <FileInput id="invoice2" invoice={invoice2} onChange={(e) => setInvoice2(e.target.files[0])} />
             </div>

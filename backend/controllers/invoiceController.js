@@ -55,5 +55,5 @@ export const dummyResponse = (req,res) => {
             },
             "result": "MATCHING"
         });
-    }, 2000);
+    }, 5000);
 };
