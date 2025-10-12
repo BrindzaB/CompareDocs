@@ -24,6 +24,8 @@ export async function processInvoice(filePath, lang = "ENG") {
         parsedText = await extractTextFromDocument(filePath, lang);
     }
 
-    const fields = await recognizeDataGPT(parsedText);
-    return fields;
+    return parsedText;
+    
+    // const fields = await recognizeDataGPT(parsedText);
+    // return fields;
 }

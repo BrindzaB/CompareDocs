@@ -4,8 +4,10 @@ import { upload } from "../middlewares/uploadMiddleware.js";
 
 const invoiceRouter = express.Router();
 
-invoiceRouter.post("/process", parseAndRecognizeInvoiceData);
-invoiceRouter.post("/compare", compareInvoices);
+invoiceRouter.post("/process", upload.fields([
+    {name: "invoice1", maxCount: 1},
+    {name: "invoice2", maxCount: 1}
+]), parseAndRecognizeInvoiceData);
 
 invoiceRouter.post("/upload", upload.fields([
     {name: "invoice1", maxCount: 1},
@@ -13,5 +15,6 @@ invoiceRouter.post("/upload", upload.fields([
 ]), compareInvoices);
 
 invoiceRouter.post("/test", dummyResponse);
+invoiceRouter.post("/compare", compareInvoices);
 
 export default invoiceRouter;
