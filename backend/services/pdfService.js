@@ -3,17 +3,17 @@ import { fromPath } from "pdf2pic";
 import fs from "fs/promises";
 import path from "path";
 
-export async function extractTestFromPdf(pdfPath) {
+export async function extractTextFromPdf(pdfPath) {
     try {
         const dataBuffer = await fs.readFile(pdfPath);
         const data = await pdfParse(dataBuffer);
         return data.text;
     } catch (error) {
-        throw new Error("PDF teyt extraction failed: " + error.message);
+        throw new Error("PDF text extraction failed: " + error.message);
     }
 }
 
-export async function convertPdfToImages(pdfPath) {
+export async function convertPdfToImage(pdfPath) {
     try {
         const options = {
             density: 300,
@@ -21,7 +21,7 @@ export async function convertPdfToImages(pdfPath) {
             savePath: "./temp",
             format: "png",
             width: 2480,
-            height: 3508
+            height: 3508,
         };
 
         const convert = fromPath(pdfPath, options);
@@ -37,6 +37,6 @@ export function isPdf(filePath) {
 }
 
 export async function isScannedPdf(pdfPath) {
-    const text = await extractTestFromPdf(pdfPath);
+    const text = await extractTextFromPdf(pdfPath);
     return text.trim().length < 100;
 }

@@ -1,3 +1,4 @@
+import multer from "multer";
 import { processInvoice } from "../services/invoiceService.js";
 import { compareDocumentsGPT } from "../services/openaiService.js";
 
@@ -35,6 +36,14 @@ export const compareInvoices = async (req, res) => {
 
     } catch (error) {
         console.error(error);
+
+        if (error instanceof multer.MulterError) {
+            if (error.code === "LIMIT_FILE_SIZE") {
+                return res.status(400).json({error: "File size exceeds 10MB limit"});
+            }
+            return res.status(400).json({error: error.message});
+        }
+
         res.status(500).json({error: "Failed to compare invoices"});
     }
 }
