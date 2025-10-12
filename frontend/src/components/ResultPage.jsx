@@ -11,9 +11,9 @@ function ResultPage({ result, onReset}) {
         <div className="pt-20 pb-10 w-full min-h-screen flex flex-col overflow-y-auto justify-evenly">
             <div className="py-10 flex items-center justify-center">
                 {match === "MATCHING" ? (
-                    <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 dark:text-white">Documents are <span className="bg-gradient-to-r from-purple-500 to-red-500 bg-clip-text text-transparent">MATCHING</span></h1>
+                    <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 dark:text-white">Documents are <span className="bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent">MATCHING</span></h1>
                 ): (
-                    <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 dark:text-white">Documents are <span className="text-red-400">NOT MATCHING</span></h1>
+                    <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 dark:text-white">Documents are <span className="bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent">NOT MATCHING</span></h1>
                 )}
             </div>
             <div className="w-full flex flex-col xl:flex-row items-center justify-evenly gap-10">
