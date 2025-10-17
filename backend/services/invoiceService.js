@@ -23,8 +23,6 @@ export async function processInvoice(filePath, lang = "ENG") {
         console.log("Processing image with OCR...");
         parsedText = await extractTextFromDocument(filePath, lang);
     }
-
-    return parsedText;
     
     // const fields = await recognizeDataGPT(parsedText);
     // return fields;

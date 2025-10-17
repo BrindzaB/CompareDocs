@@ -33,7 +33,7 @@ function ResultPage({ result, onReset}) {
             <div className="flex justify-center mt-10">
                 <button 
                 onClick={onReset}
-                className="px-8 py-3 text-white bg-gray-900 hover:bg-gray-800 rounded-full text-lg font-medium transition-transform duration-200 ease-in-out transform hover:scale-105 dark:border dark:border-gray-700"
+                className="px-8 py-3 text-white bg-gray-900 dark:bg-white/10 hover:bg-gray-800 rounded-full text-lg font-medium transition-transform duration-200 ease-in-out transform hover:scale-105 dark:border dark:border-gray-700"
                 >
                 Compare New Documents
                 </button>
