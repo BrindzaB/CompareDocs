@@ -1,6 +1,6 @@
 import { formatNumberToCurrency } from "../utils/formatNumber";
 
-function ResultCard({title, paymentDate, invoiceDate, totalAmount}) {
+function ResultCard({title, companyName, invoiceDate, totalAmount}) {
   return (
     <div className="relative w-[300px] h-[400px] md:w-[400px] md:h-[500px] lg:w-[500px] lg:h-[550px] p-1 rounded-2xl">
       
@@ -16,24 +16,24 @@ function ResultCard({title, paymentDate, invoiceDate, totalAmount}) {
           <ul role="list" className="h-full flex flex-col justify-evenly">
             <li className="py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center">
-                <div className="flex-1 min-w-0 ms-4">
-                  <p className="text-lg font-normal text-gray-900 truncate dark:text-white">
-                    Payment date
+                <div className="flex min-w-0 ms-4">
+                  <p className="text-xs sm:text-sm md:text-md font-normal text-gray-900 dark:text-white">
+                    Company name
                   </p>
                 </div>
-                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
-                  {paymentDate || 'N/A'}
+                <div className="text-xs sm:text-sm md:text-md lg:text-lg inline-flex ml-auto items-center font-semibold text-gray-900 dark:text-white max-w-[180px] md:max-w-[250px] lg:max-w-[300px] overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+                  {companyName || 'N/A'}
                 </div>
               </div>
             </li>
             <li className="py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center">
                 <div className="flex-1 min-w-0 ms-4">
-                  <p className="text-lg font-normal text-gray-900 truncate dark:text-white">
+                  <p className="text-xs sm:text-sm md:text-md font-normal text-gray-900 truncate dark:text-white">
                     Invoice date
                   </p>
                 </div>
-                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                <div className="text-xs sm:text-sm md:text-md lg:text-lg inline-flex items-center font-semibold text-gray-900 dark:text-white">
                   {invoiceDate || 'N/A'}
                 </div>
               </div>
@@ -41,11 +41,11 @@ function ResultCard({title, paymentDate, invoiceDate, totalAmount}) {
             <li className="py-3 sm:py-4 border-b border-gray-200 dark:border-gray-700">
               <div className="flex items-center">
                 <div className="flex-1 min-w-0 ms-4">
-                  <p className="text-lg font-normal text-gray-900 truncate dark:text-white">
+                  <p className="text-xs sm:text-sm md:text-md font-normal text-gray-900 truncate dark:text-white">
                     Total amount
                   </p>
                 </div>
-                <div className="inline-flex items-center text-base font-semibold text-gray-900 dark:text-white">
+                <div className="text-xs sm:text-sm md:text-md lg:text-lg inline-flex items-center font-semibold text-gray-900 dark:text-white">
                   {formatNumberToCurrency(totalAmount)}
                 </div>
               </div>

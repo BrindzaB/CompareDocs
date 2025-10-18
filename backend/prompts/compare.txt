@@ -3,17 +3,23 @@ You are a strict, deterministic comparator. INPUT: Parsed invoice data from two 
 INPUT:
 Invoice 1:
 {{invoice1}}
-
 Invoice 2:
 {{invoice2}}
 
 FIELDS TO COMPARE:
-- Payment deadline
-- Invoice date
-- Total gross amount
+Company name
+Invoice date
+Total gross amount
 
 OUTPUT RULES:
 - Return exactly one token: MATCHING or NOT MATCHING.
 - Do NOT output anything else — no explanation, no punctuation, no whitespace.
 - Comparison is strict: all three fields must be identical for MATCHING. If any field differs, return NOT MATCHING.
-- The response should only be MATCHING or NOT MATCHING no additional information.
+- For company names, normalize before comparing:
+    - Ignore capitalization (case-insensitive).
+    - Ignore punctuation and extra spaces.
+    - Treat common company suffixes as equivalent:
+        - English: "Ltd." = "Limited", "Inc." = "Incorporated", "Corp." = "Corporation", "Co." = "Company"
+        - Hungarian: "Kft." = "Korlátolt Felelősségű Társaság", "Zrt." = "Zártkörűen Működő Részvénytársaság", "Bt." = "Betéti Társaság"
+    - Example: "ABC Ltd." and "ABC Limited" → MATCHING.
+- The response should only be MATCHING or NOT MATCHING, no additional information.

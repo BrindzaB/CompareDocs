@@ -19,13 +19,13 @@ function ResultPage({ result, onReset}) {
             <div className="w-full flex flex-col xl:flex-row items-center justify-evenly gap-10">
                 <ResultCard 
                     title="First Document" 
-                    paymentDate={doc1.paymentDeadline} 
+                    companyName={doc1.companyName} 
                     invoiceDate={doc1.invoiceDate}
                     totalAmount={doc1.totalGross}
                 />
                 <ResultCard 
                     title="Second Document" 
-                    paymentDate={doc2.paymentDeadline} 
+                    companyName={doc2.companyName} 
                     invoiceDate={doc2.invoiceDate}
                     totalAmount={doc2.totalGross}
                 />
