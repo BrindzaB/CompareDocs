@@ -11,7 +11,7 @@ function FileInput({ id, invoice, onChange }) {
                     <AIFog />
                     <label
                         htmlFor={id}
-                        className="flex flex-col items-center justify-center w-full h-full rounded-2xl cursor-pointer bg-white border border-gray-100 shadow-md hover:bg-gray-100 transition-all relative opacity-80 dark:bg-gray-900 dark:hover:bg-gray-800 dark:border-gray-700 hover:scale-102 duration-200 ease-in-out"
+                        className="flex flex-col items-center justify-center w-full h-full rounded-2xl cursor-pointer bg-white border border-gray-100 shadow-md hover:bg-gray-100 transition-all relative opacity-80 dark:bg-darkgrey dark:hover:bg-gray-800 dark:border-gray-700 hover:scale-102 duration-200 ease-in-out"
                     >
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             <FontAwesomeIcon
@@ -39,7 +39,7 @@ function FileInput({ id, invoice, onChange }) {
                 <div className="flex items-center justify-center relative">
                     <SmallFog />
                     <label 
-                        className="w-24 h-24 lg:w-40 lg:h-40 rounded-full flex items-center justify-center animate-scaleIn shadow-md bg-white/80 dark:bg-gray-900/90 dark:border dark:border-gray-700"
+                        className="w-24 h-24 lg:w-40 lg:h-40 rounded-full flex items-center justify-center animate-scaleIn shadow-md bg-white/80 dark:bg-darkgrey/80 dark:border dark:border-gray-700"
                         >
                         <FontAwesomeIcon
                             icon={faCheck}

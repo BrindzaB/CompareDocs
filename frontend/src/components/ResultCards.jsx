@@ -6,7 +6,7 @@ function ResultCard({title, companyName, invoiceDate, totalAmount}) {
       
       <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-orange-400 to-red-400 rounded-2xl opacity-75 blur-lg"></div>
       
-      <div className="relative w-full h-full p-4 bg-white rounded-2xl shadow-md sm:p-8 flex flex-col opacity-90 dark:bg-gray-900 dark:border dark:border-gray-700">
+      <div className="relative w-full h-full p-4 bg-white rounded-2xl shadow-md sm:p-8 flex flex-col opacity-90 dark:bg-gray-950 dark:border dark:border-gray-700">
         <div className="flex items-center justify-center mb-4">
           <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
             {title}
