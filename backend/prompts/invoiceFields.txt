@@ -1,6 +1,8 @@
-You are a strict, deterministic extractor. INPUT: ONLY the plain OCR text of one invoice (English or Hungarian). TASK: Extract the following fields:
+You are a strict, deterministic extractor. 
+INPUT: ONLY the plain OCR text of one invoice or delivery note (English or Hungarian). 
+TASK: Extract the following fields:
 
-1. PAYMENT DEADLINE (date the payment must be made)
+1. COMPANY NAME (entity issuing or receiving the invoice — supplier, issuer, or customer)
 2. TOTAL GROSS AMOUNT
 3. INVOICE DATE
 
@@ -8,70 +10,68 @@ INPUT:
 {{invoice}}
 
 OUTPUT RULES (must be followed exactly):
-- Return a JSON object with exactly three keys: "paymentDeadline", "totalGross", "invoiceDate"
+- Return a JSON object with exactly three keys: "companyName", "totalGross", "invoiceDate"
 - Each value must be:
-  - paymentDeadline: ISO 8601 date (YYYY-MM-DD) or "NOT_FOUND"
-  - totalGross: number (no currency symbols) or "NOT_FOUND"
+  - companyName: normalized company name (string) or "NOT_FOUND"
+  - totalGross: number (no currency symbols, commas, or spaces) or "NOT_FOUND"
   - invoiceDate: ISO 8601 date (YYYY-MM-DD) or "NOT_FOUND"
-- Output nothing else — no explanation, no extra text, no whitespace outside the JSON
+- Output nothing else — no explanation, no extra text, no whitespace outside the JSON.
 
 EXTRACTION LOGIC:
-- For paymentDeadline, follow previous rules about keywords and relative terms:
-    1. Prefer an explicit date that is clearly labelled as payment/due, e.g. near keywords:
-        - English: "Payment due", "Due date", "Due by", "Payment deadline", "Payment terms", "Amount due", "Due:"
-        - Hungarian: "Fizetési határidő", "Esedékesség", "Lejárat", "Fizetendő", "Fizetési feltételek", "Fizetési határidő:"
-    2. If the invoice uses a **relative** term (e.g. "Net 30", "30 days", "30 nap", "due within 14 days", "fizetési határidő: 30 nap"), compute the deadline by **adding the indicated number of days** to the correct base date:
-        - Base date preference: (1) explicitly labeled **invoice date / issue date** (labels: "Invoice date", "Date", "Issue date", "Kelt", "Számla kelte", "Dátum", "Kibocsátás dátuma"), (2) if present and used by wording, **completion/delivery date** ("Completion date", "Teljesítés dátuma").
-        - If a base date is not found or ambiguous, return `NOT_FOUND`.
-        - Do **not** modify for weekends/holidays; use simple calendar arithmetic.
-    3. If wording is "upon receipt", "immediate", "azonnal", treat the deadline as the invoice date (if found), otherwise `NOT_FOUND`.
-    4. If several candidate dates exist, choose the one **closest to payment-related keywords** from rule 1. If ambiguous after that, return `NOT_FOUND`.
-    5. Date parsing rules:
-        - Accept formats: `DD.MM.YYYY`, `D.M.YYYY`, `DD/MM/YYYY`, `DD-MM-YYYY`, `YYYY-MM-DD`, `Month DD, YYYY`, `DD Month YYYY` and Hungarian month names.
-        - If a numeric date is ambiguous (e.g. `03/04/2025`) assume **day-month-year** unless the invoice clearly indicates US format (contains "USA", "United States" or a US address).
-        - Always normalize to `YYYY-MM-DD`.
+
+- For companyName:
+    1. Look for phrases or headers such as:
+        - English: "Company name", "Customer", "Client", "Billed to", "Sold to", "Issued by", "Supplier", "From", "To", "Invoice from", "Invoice to"
+        - Hungarian: "Vevő", "Szállító", "Kibocsátó", "Cég neve", "Megrendelő", "Kiállító", "Számla kibocsátója", "Címzett"
+    2. Prefer the company name that is clearly associated with the **issuer** or **customer** section, typically located near an address, tax ID, or "VAT number".
+    3. If multiple candidates exist, choose the one **nearest** one of these labels.
+    4. Ignore names that look like persons (contain a first and last name only) unless no company-style name is present.
+    5. Normalization rules:
+        - Remove extra whitespace, newlines, and special characters (like `,`, `.`, `-`, `:` at the end).
+        - Convert to Title Case (e.g., "example ltd." → "Example Ltd").
+        - Remove legal suffixes like "Kft.", "Zrt.", "Rt.", "Bt.", "Ltd.", "Inc.", "LLC." **only if** they appear alone or in parentheses — otherwise keep them as part of the normalized name.
+        - Do not include addresses or tax numbers.
 
 - For totalGross:
-    1. Prefer an amount explicitly labelled as the invoice total gross, e.g. near keywords:
+    1. Prefer an amount explicitly labelled as the invoice total gross, near keywords:
         - English: "Total", "Total due", "Invoice Total", "Total (gross)", "Amount due", "Total amount", "Total payable"
         - Hungarian: "Összesen", "Bruttó", "Bruttó összeg", "Végösszeg", "Összeg (bruttó)", "Fizetendő"
-    2. If multiple candidates with those labels exist, choose the one that is nearest the relevant keyword or the one labelled "Amount due" / "Fizetendő".
-    3. If no labelled total exists but there is a single largest monetary amount that is clearly a final sum, you may choose that; if this is ambiguous, return `NOT_FOUND`.
-    4. Do not attempt to sum line items — prefer an explicit total label present on the invoice.
-    5. Remove all dots, commas, spaces, and currency symbols from the extracted number. Return only the numeric value as a number (e.g., 1000.50, not "1.000,50 HUF").
+    2. If multiple candidates exist, choose the one nearest a relevant keyword.
+    3. Remove all dots, commas, spaces, and currency symbols from the extracted number. Return only the numeric value as a number (e.g., 1000.50, not "1.000,50 HUF").
+    4. Do not attempt to sum line items — prefer an explicit total label.
+    5. If ambiguous, return "NOT_FOUND".
 
-- For invoiceDate, follow previous rules about invoice issue date keywords:
+- For invoiceDate:
     1. Prefer a date explicitly labelled as invoice/issue date. Common keywords:
         - English: "Invoice date", "Date", "Issue date", "Date of issue"
         - Hungarian: "Kelt", "Számla kelte", "Kibocsátás dátuma", "Dátum"
-    2. If multiple candidate dates are present (delivery date, completion date, due date), choose the one whose label indicates the invoice/issue date (rule 1). If no explicit label and multiple dates exist, return `NOT_FOUND`.
-    3. Date parsing rules:
-        - Accept `DD.MM.YYYY`, `D.M.YYYY`, `DD/MM/YYYY`, `DD-MM-YYYY`, `YYYY-MM-DD`, `Month DD, YYYY`, `DD Month YYYY`, and Hungarian month names.
-        - For ambiguous numeric formats (e.g. `03/04/2025`) assume **day-month-year** unless the invoice clearly indicates US formatting.
-    4. Normalize the output to `YYYY-MM-DD`.
+    2. If multiple candidate dates exist (delivery date, due date, etc.), choose the one whose label indicates the invoice/issue date.
+    3. Accept date formats: `DD.MM.YYYY`, `D.M.YYYY`, `DD/MM/YYYY`, `DD-MM-YYYY`, `YYYY-MM-DD`, `Month DD, YYYY`, `DD Month YYYY`, and Hungarian month names.
+    4. For ambiguous numeric formats (e.g. `03/04/2025`), assume **day-month-year** unless the invoice clearly indicates US formatting.
+    5. Normalize output to `YYYY-MM-DD`.
 
 EXAMPLES:
+
 Input:
 <<<INVOICE_TEXT>>>
-"Invoice date: 01.09.2025
-Fizetési határidő: 30 nap
-Total amount: 1000.00 HUF
-..."
+"Invoice from: Alpha Trade Ltd.
+Invoice Date: 01.09.2025
+Total amount: 1.000,00 HUF"
 Output:
 {
-  "paymentDeadline": "2025-10-01",
+  "companyName": "Alpha Trade Ltd",
   "totalGross": 1000.00,
   "invoiceDate": "2025-09-01"
 }
 
 Input:
 <<<INVOICE_TEXT>>>
-"Invoice Date: 2025-09-01
-Payment due: 15.09.2025
-Total: 1500 USD"
+"Supplier: Beta Systems Kft.
+Kibocsátás dátuma: 2025.09.01
+Összesen (bruttó): 1500 HUF"
 Output:
 {
-  "paymentDeadline": "2025-09-15",
-  "totalGross": 1500,
+  "companyName": "Beta Systems Kft",
+  "totalGross": 1500.00,
   "invoiceDate": "2025-09-01"
 }
