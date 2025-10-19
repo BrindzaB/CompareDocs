@@ -5,6 +5,7 @@ import { StrictMode } from 'react';
 import './index.css';
 import App from './App.jsx';
 import HomePage from './components/HomePage.jsx';
+import AboutPage from "./components/AboutPage.jsx";
 
 const router = createBrowserRouter([
     {
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
             {
                 path: "/",
                 element: <HomePage />,
+            },
+            {
+                path: "/about",
+                element: <AboutPage />
             }
         ]
     }

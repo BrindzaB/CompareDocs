@@ -14,7 +14,7 @@ function Navbar() {
                         <a href="/" className="block text-gray-800 rounded-sm transition-transform duration-150 hover:scale-105 hover:text-gray-900 dark:text-white dark:hover:text-gray-300">Home</a>
                     </li>
                     <li>
-                        <a href="#" className="block text-gray-800 rounded-sm transition-transform duration-150 hover:scale-105 hover:text-gray-900 dark:text-white dark:hover:text-gray-300">About</a>
+                        <a href="/about" className="block text-gray-800 rounded-sm transition-transform duration-150 hover:scale-105 hover:text-gray-900 dark:text-white dark:hover:text-gray-300">About</a>
                     </li>
                     </ul>
                 </div>
