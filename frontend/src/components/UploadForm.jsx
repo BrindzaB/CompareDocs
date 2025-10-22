@@ -40,35 +40,59 @@ function UploadForm({onUploadStart, onUploadComplete}) {
     }
 
     return (
-        <form className="flex justify-center items-center w-full min-h-screen px-10 sm:px-10 lg:px-20 pt-40 pb-20 overflow-y-auto bg-transparent" onSubmit={handleSubmit}>
-            {error && (
-                <div 
-                    className="absolute w-full min-h-screen bg-gray-200/60 dark:bg-black/70 z-10 flex items-center justify-center"
-                    onClick={handleCancel}
-                >
-                    <div className="min-w-[300px] min-h-[150px] flex flex-col items-center justify-evenly bg-white dark:bg-gray-800 rounded-xl gap-2 px-10 shadow-sm dark:border dark:border-gray-700">
-                        <FontAwesomeIcon
-                            icon={faCircleExclamation}
-                            className="text-red-400 text-2xl"
-                        />
-                        <h1 className="text-red-400 text-center font-medium">{error}</h1>
-                        <div>
+        <div className="flex flex-col items-center w-full px-10 sm:px-10 lg:px-20 py-10 lg:py-5 bg-transparent justify-center min-h-[calc(100vh-4rem)] gap-25">
+            {invoice1 && invoice2 ? (
+                    <div className="flex flex-col">
+                        <h1 className="font-pacifico px-4 py-2 lg:px-6 lg:py-5 text-5xl lg:text-7xl font-bold italic bg-gradient-to-r from-purple-500 to-orange-400 bg-clip-text text-transparent text-center">
+                            Click
+                        </h1>
+                        <h1 className="text-2xl lg:text-4xl font-medium text-center">
+                            on the compare button
+                        </h1>
+                    </div>
+                ) : (
+                    <h1 className="text-2xl lg:text-4xl font-medium text-center">
+                        <span className="font-pacifico px-4 pb-2 lg:px-6 lg:pb-5 text-5xl lg:text-7xl font-bold italic bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent">Upload</span> two documents to compare
+                    </h1>
+                )}
+
+
+            <form
+                className="flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-20 2xl:gap-40"
+                onSubmit={handleSubmit}
+            >
+                {error && (
+                    <div 
+                        className="absolute inset-0 bg-gray-200/60 dark:bg-black/70 z-10 flex items-center justify-center"
+                        onClick={handleCancel}
+                    >
+                        <div className="min-w-[300px] min-h-[150px] flex flex-col items-center justify-evenly bg-white dark:bg-gray-800 rounded-xl gap-2 px-10 shadow-sm dark:border dark:border-gray-700">
+                            <FontAwesomeIcon
+                                icon={faCircleExclamation}
+                                className="text-red-400 text-2xl"
+                            />
+                            <h1 className="text-red-400 text-center font-medium">{error}</h1>
                             <button 
                                 className="text-gray-700 dark:text-white text-sm px-2 py-1 transition-transform duration-150 hover:scale-105 cursor-pointer"
-                                onClick={handleCancel}>Cancel</button>
+                                onClick={handleCancel}>
+                                Cancel
+                            </button>
                         </div>
                     </div>
-                </div>
-                
-            )}
-            <div className="flex flex-col lg:flex-row gap-20 lg:gap-30 2xl:gap-40 items-center justify-between ">
+                )}
+
                 <FileInput id="invoice1" invoice={invoice1} onChange={(e) => setInvoice1(e.target.files[0])} />
-                <div className="flex items-center justify-center">
-                    <button type="submit" className="h-12 w-24 text-sm lg:h-15 lg:w-30 text-white bg-gray-900 hover:bg-gray-800 rounded-full lg:text-lg font-medium text-center transition-transform duration-200 ease-in-out transform hover:scale-105 dark:border dark:border-gray-600 dark:bg-darkgrey dark:hover:bg-gray-900 cursor-pointer">Compare</button>
-                </div>
+
+                <button
+                    type="submit"
+                    className="h-12 w-24 text-sm lg:h-15 lg:w-30 text-white bg-gray-900 hover:bg-gray-800 rounded-full lg:text-lg font-medium text-center transition-transform duration-200 ease-in-out transform hover:scale-105 dark:border dark:border-gray-600 dark:bg-darkgrey dark:hover:bg-gray-900 cursor-pointer"
+                >
+                    Compare
+                </button>
+
                 <FileInput id="invoice2" invoice={invoice2} onChange={(e) => setInvoice2(e.target.files[0])} />
-            </div>
-        </form>
+            </form>
+        </div>
     )
 }
 

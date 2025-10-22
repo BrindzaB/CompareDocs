@@ -12,6 +12,8 @@ html, body, #root {
 
 @theme {
   --color-darkgrey: #060606;
+
+  --font-pacifico: 'Pacifico', cursive;
 }
 
 

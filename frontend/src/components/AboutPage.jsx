@@ -1,17 +1,15 @@
-import { use, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 
 export default function AboutPage() {
   const navigate = useNavigate();
-  const [hoveredCard, setHoveredCard] = useState(null);
 
   return (
     <div className="w-full min-h-screen bg-transparent overflow-y-auto">
       <div className="flex justify-center items-center w-full min-h-screen px-10 sm:px-10 lg:px-20 pt-20 pb-20">
         <div className="flex flex-col lg:flex-row gap-20 items-center justify-between w-full max-w-7xl">
           <div className="flex-1 flex flex-col justify-center">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold bg-gradient-to-r from-purple-400 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6 leading-tight dark:from-purple-300 dark:via-orange-300 dark:to-red-300">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-pacifico font-bold px-2 py-5 bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6 leading-tight dark:from-purple-500 dark:via-orange-400 dark:to-red-500">
               CompareDocs
             </h1>
             <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed font-medium">
@@ -153,7 +151,7 @@ export default function AboutPage() {
             ].map((item, idx) => (
               <div key={idx} className="flex flex-col items-center">
                 <div className="mb-6 relative">
-                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-400  to-orange-400 flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-gradient-to-br from-purple-500  to-red-500 flex items-center justify-center">
                     <span className="text-2xl font-bold text-white">{item.step}</span>
                   </div>
                 </div>
