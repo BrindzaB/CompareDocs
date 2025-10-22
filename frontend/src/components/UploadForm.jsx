@@ -40,25 +40,25 @@ function UploadForm({onUploadStart, onUploadComplete}) {
     }
 
     return (
-        <div className="flex flex-col items-center w-full px-10 sm:px-10 lg:px-20 py-10 lg:py-5 bg-transparent justify-center min-h-[calc(100vh-4rem)] gap-25">
+        <div className="flex flex-col items-center w-full px-10 sm:px-10 lg:px-20 pt-10 pb-20 lg:py-5 bg-transparent justify-center min-h-[calc(100vh-4rem)] gap-25">
             {invoice1 && invoice2 ? (
                     <div className="flex flex-col">
-                        <h1 className="font-pacifico px-4 py-2 lg:px-6 lg:py-5 text-5xl lg:text-7xl font-bold italic bg-gradient-to-r from-purple-500 to-orange-400 bg-clip-text text-transparent text-center">
+                        <h1 className="font-pacifico px-4 py-2 lg:px-6 lg:py-5 text-4xl lg:text-6xl font-bold italic bg-gradient-to-r from-purple-500 to-orange-400 bg-clip-text text-transparent text-center">
                             Click
                         </h1>
-                        <h1 className="text-2xl lg:text-4xl font-medium text-center">
+                        <h1 className="text-xl lg:text-2xl font-medium text-center">
                             on the compare button
                         </h1>
                     </div>
                 ) : (
-                    <h1 className="text-2xl lg:text-4xl font-medium text-center">
-                        <span className="font-pacifico px-4 pb-2 lg:px-6 lg:pb-5 text-5xl lg:text-7xl font-bold italic bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent">Upload</span> two documents to compare
+                    <h1 className="text-xl lg:text-2xl font-medium text-center">
+                        <span className="font-pacifico px-4 pb-2 lg:px-6 lg:pb-5 text-4xl lg:text-6xl font-bold italic bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent">Upload</span> two documents to compare
                     </h1>
                 )}
 
 
             <form
-                className="flex flex-col lg:flex-row justify-center items-center gap-10 lg:gap-20 2xl:gap-40"
+                className="flex flex-col lg:flex-row justify-center items-center gap-20 2xl:gap-40"
                 onSubmit={handleSubmit}
             >
                 {error && (

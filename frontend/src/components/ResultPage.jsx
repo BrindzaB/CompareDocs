@@ -8,8 +8,8 @@ function ResultPage({ result, onReset}) {
     const match = result?.result || {};
 
     return (
-        <div className="pt-20 pb-10 w-full min-h-screen flex flex-col overflow-y-auto justify-evenly">
-            <div className="py-10 flex items-center justify-center">
+        <div className="flex flex-col items-center w-full px-10 sm:px-10 lg:px-20 pt-10 pb-20 lg:py-5 bg-transparent min-h-[calc(100vh-4rem)] gap-15">
+            <div className="flex items-center justify-center pt-10">
                 {match === "MATCHING" ? (
                     <h1 className="text-3xl lg:text-4xl xl:text-5xl font-bold text-gray-900 dark:text-white">Documents are <span className="bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent">MATCHING</span></h1>
                 ): (
@@ -30,7 +30,7 @@ function ResultPage({ result, onReset}) {
                     totalAmount={doc2.totalGross}
                 />
             </div>
-            <div className="flex justify-center mt-10">
+            <div className="flex justify-center">
                 <button 
                 onClick={onReset}
                 className="px-8 py-3 text-white bg-gray-900 dark:bg-darkgrey hover:bg-gray-800 rounded-full text-lg font-medium transition-transform duration-200 ease-in-out transform hover:scale-105 dark:border dark:border-gray-600"

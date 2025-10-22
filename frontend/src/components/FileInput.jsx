@@ -24,7 +24,7 @@ function FileInput({ id, invoice, onChange }) {
                                 </span>
                             </p>
                             <p className="text-xs text-gray-500">
-                                Upload a document
+                                PNG, JPG or PDF (max. 10MB)
                             </p>
                         </div>
                         <input
