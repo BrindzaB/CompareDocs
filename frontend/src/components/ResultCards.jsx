@@ -1,13 +1,13 @@
 import { formatNumberToCurrency } from "../utils/formatNumber";
 
-function ResultCard({title, companyName, invoiceDate, totalAmount}) {
+function ResultCard({title, companyName, invoiceDate, totalAmount, currency}) {
   return (
     <div className="relative w-[300px] h-[400px] md:w-[400px] md:h-[500px] lg:w-[500px] lg:h-[550px] p-1 rounded-2xl">
       
       <div className="absolute inset-0 bg-gradient-to-br from-purple-400 via-orange-400 to-red-400 rounded-2xl opacity-75 blur-lg"></div>
       
       <div className="relative w-full h-full p-4 bg-white rounded-2xl shadow-md sm:p-8 flex flex-col opacity-90 dark:bg-gray-950 dark:border dark:border-gray-700">
-        <div className="flex items-center justify-center mb-4">
+        <div className="flex items-center justify-center py-4">
           <h5 className="text-xl font-bold leading-none text-gray-900 dark:text-white">
             {title}
           </h5>
@@ -21,7 +21,9 @@ function ResultCard({title, companyName, invoiceDate, totalAmount}) {
                     Company name
                   </p>
                 </div>
-                <div className="text-xs sm:text-sm md:text-md lg:text-lg inline-flex ml-auto items-center font-semibold text-gray-900 dark:text-white max-w-[180px] md:max-w-[250px] lg:max-w-[300px] overflow-x-auto whitespace-nowrap scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
+                <div className="text-xs sm:text-sm md:text-md lg:text-lg ml-auto font-semibold text-gray-900 dark:text-white 
+                  max-w-[120px] md:max-w-[200px] lg:max-w-[250px] 
+                  overflow-x-auto whitespace-nowrap block scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-transparent">
                   {companyName || 'N/A'}
                 </div>
               </div>
@@ -46,7 +48,7 @@ function ResultCard({title, companyName, invoiceDate, totalAmount}) {
                   </p>
                 </div>
                 <div className="text-xs sm:text-sm md:text-md lg:text-lg inline-flex items-center font-semibold text-gray-900 dark:text-white">
-                  {formatNumberToCurrency(totalAmount)}
+                  {formatNumberToCurrency(totalAmount) + " " + currency}
                 </div>
               </div>
             </li>

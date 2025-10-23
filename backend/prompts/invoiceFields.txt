@@ -4,16 +4,18 @@ TASK: Extract the following fields:
 
 1. COMPANY NAME (entity issuing or receiving the invoice — supplier, issuer, or customer)
 2. TOTAL GROSS AMOUNT
+4. CURRENCY (e.g., HUF, EUR, USD)
 3. INVOICE DATE
 
 INPUT:
 {{invoice}}
 
 OUTPUT RULES (must be followed exactly):
-- Return a JSON object with exactly three keys: "companyName", "totalGross", "invoiceDate"
+- Return a JSON object with exactly three keys: "companyName", "totalGross", "currency", "invoiceDate"
 - Each value must be:
   - companyName: normalized company name (string) or "NOT_FOUND"
   - totalGross: number (no currency symbols, commas, or spaces) or "NOT_FOUND"
+  - currency: three-letter ISO currency code (e.g., "HUF", "EUR", "USD") or ""
   - invoiceDate: ISO 8601 date (YYYY-MM-DD) or "NOT_FOUND"
 - Output nothing else — no explanation, no extra text, no whitespace outside the JSON.
 
@@ -41,6 +43,16 @@ EXTRACTION LOGIC:
     4. Do not attempt to sum line items — prefer an explicit total label.
     5. If ambiguous, return "NOT_FOUND".
 
+- For totalCurrency:
+    1. Detect the currency unit closest to the total gross amount or its label.
+    2. Accept ISO codes (HUF, EUR, USD) or currency symbols (Ft, €, $, £) and normalize:
+        - HUF, Ft, forint → "HUF"
+        - EUR, €, euro → "EUR"
+        - USD, $, dollar → "USD"
+        - GBP, £, pound → "GBP"
+    3. If multiple currencies appear, select the one nearest the total gross label.
+    4. If no recognizable currency is present, return "NOT_FOUND".
+
 - For invoiceDate:
     1. Prefer a date explicitly labelled as invoice/issue date. Common keywords:
         - English: "Invoice date", "Date", "Issue date", "Date of issue"
@@ -61,6 +73,7 @@ Output:
 {
   "companyName": "Alpha Trade Ltd",
   "totalGross": 1000.00,
+  "currency": "HUF",
   "invoiceDate": "2025-09-01"
 }
 
@@ -73,5 +86,6 @@ Output:
 {
   "companyName": "Beta Systems Kft",
   "totalGross": 1500.00,
+  "currency": "HUF"
   "invoiceDate": "2025-09-01"
 }

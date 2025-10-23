@@ -1,4 +1,4 @@
 export function formatNumberToCurrency(number) {
     if (!number && number !== 0) return "N/A";
-    return new Intl.NumberFormat("hu-HU").format(number);
+    return new Intl.NumberFormat("en-EN").format(number);
 }
