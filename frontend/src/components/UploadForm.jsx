@@ -40,7 +40,7 @@ function UploadForm({onUploadStart, onUploadComplete}) {
     }
 
     return (
-        <div className="flex flex-col items-center w-full px-10 sm:px-10 lg:px-20 pt-10 pb-20 lg:py-5 bg-transparent justify-center min-h-[calc(100vh-4rem)] gap-25">
+        <div className="flex flex-col items-center w-full px-10 sm:px-10 lg:px-20 pt-10 pb-20 lg:py-5 bg-transparent justify-center min-h-[calc(100vh-4rem)] gap-25 text-center">
             {invoice1 && invoice2 ? (
                     <div className="flex flex-col">
                         <h1 className="font-pacifico px-4 py-2 lg:px-6 lg:py-5 text-4xl lg:text-6xl font-bold italic bg-gradient-to-r from-purple-500 to-orange-400 bg-clip-text text-transparent text-center">
@@ -51,9 +51,7 @@ function UploadForm({onUploadStart, onUploadComplete}) {
                         </h1>
                     </div>
                 ) : (
-                    <h1 className="text-xl lg:text-2xl font-medium text-center">
-                        <span className="font-pacifico px-4 pb-2 lg:px-6 lg:pb-5 text-4xl lg:text-6xl font-bold italic bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent">Upload</span> two documents to compare
-                    </h1>
+                    <h1 className="text-2xl lg:text-3xl xl:text-4xl font-semibold text-gray-900 dark:text-white"> <span className="text-3xl lg:text-4xl xl:text-5xl font-bold py-2 px-1 bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent dark:from-purple-600 dark:via-orange-500 dark:to-red-500">Upload</span> two documents to compare</h1>
                 )}
 
 

@@ -1,4 +1,6 @@
 import { useNavigate } from 'react-router-dom';
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faFileInvoice, faWandMagicSparkles, faCheckCircle } from "@fortawesome/free-solid-svg-icons";
 
 
 export default function AboutPage() {
@@ -9,7 +11,7 @@ export default function AboutPage() {
       <div className="flex justify-center items-center w-full min-h-screen px-10 sm:px-10 lg:px-20 pt-20 pb-20">
         <div className="flex flex-col lg:flex-row gap-20 items-center justify-between w-full max-w-7xl">
           <div className="flex-1 flex flex-col justify-center">
-            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-pacifico font-bold px-2 py-5 bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6 leading-tight dark:from-purple-500 dark:via-orange-400 dark:to-red-500">
+            <h1 className="text-5xl sm:text-6xl lg:text-7xl font-bold px-2 py-5 bg-gradient-to-r from-purple-500 via-orange-400 to-red-400 bg-clip-text text-transparent mb-6 leading-tight dark:from-purple-600 dark:via-orange-500 dark:to-red-500">
               CompareDocs
             </h1>
             <p className="text-xl sm:text-2xl text-gray-600 dark:text-gray-300 mb-8 leading-relaxed font-medium">
@@ -83,17 +85,17 @@ export default function AboutPage() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             {[
               {
-                emoji: '📁',
+                icon: faFileInvoice,
                 title: 'Multi-Format Support',
                 description: 'Upload and process documents in PDF and image formats (JPG, PNG, etc.) with ease'
               },
               {
-                emoji: '✨',
+                icon: faWandMagicSparkles,
                 title: 'AI-Powered Analysis',
                 description: 'OpenAI API extracts and compares key fields with exceptional accuracy and intelligence'
               },
               {
-                emoji: '✓',
+                icon: faCheckCircle,
                 title: 'Accurate Matching',
                 description: 'Compare company name, invoice date, and total amount to verify document authenticity'
               }
@@ -103,8 +105,8 @@ export default function AboutPage() {
                 className="relative p-1 rounded-2xl group"
               >
                 <div className="relative w-full h-full p-8 bg-white rounded-2xl border shadow-sm border-gray-100 transition-all dark:bg-darkgrey dark:border-gray-700 flex flex-col items-center text-center">
-                  <div className="text-4xl mb-4">
-                    {feature.emoji}
+                  <div className="text-4xl text-orange-400 mb-4">
+                    <FontAwesomeIcon icon={feature.icon} />
                   </div>
                   <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3">
                     {feature.title}
