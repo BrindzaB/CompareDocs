@@ -33,7 +33,7 @@ function LoaderElement({ size = 240, strokeWidth = 20, duration = 5000 }) {
           </linearGradient>
         </defs>
         <g transform={`rotate(-90 ${size / 2} ${size / 2})`}>
-          {/* Empty ring - darker in dark mode */}
+          
           <circle
             className="stroke-gray-200 dark:stroke-gray-700"
             fill="transparent"
@@ -42,7 +42,7 @@ function LoaderElement({ size = 240, strokeWidth = 20, duration = 5000 }) {
             cx={size / 2}
             cy={size / 2}
           />
-          {/* Progress ring */}
+          
           <circle
             stroke="url(#gradientStroke)"
             fill="transparent"
@@ -56,7 +56,7 @@ function LoaderElement({ size = 240, strokeWidth = 20, duration = 5000 }) {
             style={{ transition: "stroke-dashoffset 0.05s linear" }}
           />
         </g>
-        {/* Text - white in dark mode */}
+        
         <text
           x="50%"
           y="50%"

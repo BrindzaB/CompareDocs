@@ -2,35 +2,6 @@ import multer from "multer";
 import { processInvoice } from "../services/invoiceService.js";
 import { compareDocumentsGPT } from "../services/openaiService.js";
 
-export const parseAndRecognizeInvoiceData = async (req, res) => {
-  try {
-    const lang = req.body?.lang || "ENG";
-    
-    if (!req.files || !req.files.invoice1 || !req.files.invoice2) {
-      return res.status(400).json({ error: "Two invoice files are required" });
-    }
-    
-    const filePath1 = req.files.invoice1[0].path;
-    const filePath2 = req.files.invoice2[0].path;
-    
-    const invoice1 = await processInvoice(filePath1, lang);
-    const invoice2 = await processInvoice(filePath2, lang);
-    
-    res.json({ invoice1, invoice2 });
-  } catch (error) {
-    console.error(error);
-    
-    if (error instanceof multer.MulterError) {
-      if (error.code === "LIMIT_FILE_SIZE") {
-        return res.status(400).json({ error: "File size exceeds 10MB limit" });
-      }
-      return res.status(400).json({ error: error.message });
-    }
-    
-    res.status(500).json({ error: "Failed to parse and recognize data" });
-  }
-};
-
 export const compareInvoices = async (req, res) => {
     try {
         const lang = req.body.lang || "ENG";
@@ -61,22 +32,3 @@ export const compareInvoices = async (req, res) => {
         res.status(500).json({error: "Failed to compare invoices"});
     }
 }
-
-export const dummyResponse = (req,res) => {
-
-    setTimeout(() => {
-        res.send({
-            "invoice1": {
-                "paymentDeadline": "2024-03-17",
-                "totalGross": 168500.99,
-                "invoiceDate": "2024-03-17"
-            },
-            "invoice2": {
-                "paymentDeadline": "2024-03-17",
-                "totalGross": 168500.99,
-                "invoiceDate": "2024-03-17"
-            },
-            "result": "MATCHING"
-        });
-    }, 5000);
-};

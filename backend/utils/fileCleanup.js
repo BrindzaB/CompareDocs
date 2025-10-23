@@ -3,18 +3,25 @@ import path from 'path';
 
 export async function cleanupTempFiles() {
   try {
-    const tempDir = './temp';
-    const files = await fs.readdir(tempDir);
-    
-    for (const file of files) {
-      const filePath = path.join(tempDir, file);
-      const stats = await fs.stat(filePath);
-      const now = Date.now();
-      const fileAge = now - stats.mtimeMs;
-      
-      if (fileAge > 3600000) {
-        await fs.unlink(filePath);
-        console.log(`Cleaned up old temp file: ${file}`);
+    const folders = ['./temp', './documents'];
+    const now = Date.now();
+    const ONE_HOUR = 3600000;
+
+    for (const folder of folders) {
+      try {
+        const files = await fs.readdir(folder);
+
+        for (const file of files) {
+          const filePath = path.join(folder, file);
+          const stats = await fs.stat(filePath);
+          const fileAge = now - stats.mtimeMs;
+
+          if (fileAge > ONE_HOUR) {
+            await fs.unlink(filePath);
+          }
+        }
+      } catch (folderError) {
+        console.warn(`Could not clean folder "${folder}":`, folderError.message);
       }
     }
   } catch (error) {

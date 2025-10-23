@@ -11,19 +11,19 @@ function FileInput({ id, invoice, onChange }) {
                     <AIFog />
                     <label
                         htmlFor={id}
-                        className="flex flex-col items-center justify-center w-full h-full rounded-2xl cursor-pointer bg-white/80 border border-gray-100 shadow-md hover:bg-gray-100/90 transition-all relative dark:bg-darkgrey/90 dark:hover:bg-darkgrey/95 dark:border-gray-700 hover:scale-102 duration-200 ease-in-out"
+                        className="flex flex-col items-center justify-center w-full h-full rounded-2xl cursor-pointer bg-white/80 border border-gray-100 shadow-md hover:bg-gray-100/90 transition-all relative dark:bg-darkgrey/90 dark:hover:bg-gray-900/80 dark:border-gray-700 hover:scale-102 duration-200 ease-in-out"
                     >
                         <div className="flex flex-col items-center justify-center pt-5 pb-6">
                             <FontAwesomeIcon
                                 icon={faUpload}
-                                className="text-gray-500 text-2xl mb-2"
+                                className="text-gray-500 dark:text-gray-300 text-2xl mb-2"
                             />
-                            <p className="mb-2 text-sm text-gray-500">
+                            <p className="mb-2 text-sm text-gray-500 dark:text-gray-300">
                                 <span className="font-semibold">
                                     Click to upload
                                 </span>
                             </p>
-                            <p className="text-xs text-gray-500">
+                            <p className="text-xs text-gray-500 dark:text-gray-300">
                                 PNG, JPG or PDF (max. 10MB)
                             </p>
                         </div>
