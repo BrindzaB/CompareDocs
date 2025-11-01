@@ -1,6 +1,7 @@
 import "dotenv/config";
 import express from "express";
 import invoiceRouter from "./routes/invoiceRoutes.js";
+import exportRouter from "./routes/exportRoutes.js";
 import fs from "fs";
 import { cleanupTempFiles } from "./utils/fileCleanup.js";
 
@@ -14,6 +15,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/api/invoices", invoiceRouter);
+app.use("/api/export", exportRouter);
 
 app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
 
