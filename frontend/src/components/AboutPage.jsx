@@ -70,7 +70,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* Features Section */}
       <div className="flex justify-center w-full px-10 sm:px-10 lg:px-20 py-20 bg-gradient-to-b from-transparent via-gray-50 to-transparent dark:via-gray-900/30">
         <div className="w-full max-w-7xl">
           <div className="text-center mb-16">
@@ -121,7 +120,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      {/* How It Works Section */}
       <div className="flex justify-center w-full px-10 sm:px-10 lg:px-20 py-20">
         <div className="w-full max-w-7xl">
           <div className="text-center mb-16">
@@ -169,8 +167,6 @@ export default function AboutPage() {
         </div>
       </div>
 
-      
-      {/* CTA Section */}
       <div className="flex justify-center w-full px-10 sm:px-10 lg:px-20 py-20">
         <div className="w-full max-w-4xl">
           <div className="relative p-1 rounded-2xl group">
@@ -182,7 +178,8 @@ export default function AboutPage() {
               <p className="text-lg text-gray-600 dark:text-gray-400 mb-8">
                 Start comparing documents in seconds with our intelligent AI-powered solution
               </p>
-              <button className="h-12 px-8 text-white bg-gray-900 hover:bg-gray-800 rounded-full font-medium text-center transition-transform duration-200 ease-in-out transform hover:scale-105 dark:border dark:border-gray-600 dark:bg-darkgrey dark:hover:bg-gray-900 cursor-pointer">
+              <button className="h-12 px-8 text-white bg-gray-900 hover:bg-gray-800 rounded-full font-medium text-center transition-transform duration-200 ease-in-out transform hover:scale-105 dark:border dark:border-gray-600 dark:bg-darkgrey dark:hover:bg-gray-900 cursor-pointer"
+                      onClick={() => navigate("/")}>
                 Start Comparing Now
               </button>
             </div>

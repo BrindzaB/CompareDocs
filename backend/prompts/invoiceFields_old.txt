@@ -1,0 +1,91 @@
+You are a strict, deterministic extractor. 
+INPUT: ONLY the plain OCR text of one invoice or delivery note (English or Hungarian). 
+TASK: Extract the following fields:
+
+1. COMPANY NAME (entity issuing or receiving the invoice — supplier, issuer, or customer)
+2. TOTAL GROSS AMOUNT
+4. CURRENCY (e.g., HUF, EUR, USD)
+3. INVOICE DATE
+
+INPUT:
+{{invoice}}
+
+OUTPUT RULES (must be followed exactly):
+- Return a JSON object with exactly three keys: "companyName", "totalGross", "currency", "invoiceDate"
+- Each value must be:
+  - companyName: normalized company name (string) or "NOT_FOUND"
+  - totalGross: number (no currency symbols, commas, or spaces) or "NOT_FOUND"
+  - currency: three-letter ISO currency code (e.g., "HUF", "EUR", "USD") or ""
+  - invoiceDate: ISO 8601 date (YYYY-MM-DD) or "NOT_FOUND"
+- Output nothing else — no explanation, no extra text, no whitespace outside the JSON.
+
+EXTRACTION LOGIC:
+
+- For companyName:
+    1. Look for phrases or headers such as:
+        - English: "Company name", "Customer", "Client", "Billed to", "Sold to", "Issued by", "Supplier", "From", "To", "Invoice from", "Invoice to"
+        - Hungarian: "Vevő", "Szállító", "Kibocsátó", "Cég neve", "Megrendelő", "Kiállító", "Számla kibocsátója", "Címzett"
+    2. Prefer the company name that is clearly associated with the **issuer** or **customer** section, typically located near an address, tax ID, or "VAT number".
+    3. If multiple candidates exist, choose the one **nearest** one of these labels.
+    4. Ignore names that look like persons (contain a first and last name only) unless no company-style name is present.
+    5. Normalization rules:
+        - Remove extra whitespace, newlines, and special characters (like `,`, `.`, `-`, `:` at the end).
+        - Convert to Title Case (e.g., "example ltd." → "Example Ltd").
+        - Remove legal suffixes like "Kft.", "Zrt.", "Rt.", "Bt.", "Ltd.", "Inc.", "LLC." **only if** they appear alone or in parentheses — otherwise keep them as part of the normalized name.
+        - Do not include addresses or tax numbers.
+
+- For totalGross:
+    1. Prefer an amount explicitly labelled as the invoice total gross, near keywords:
+        - English: "Total", "Total due", "Invoice Total", "Total (gross)", "Amount due", "Total amount", "Total payable"
+        - Hungarian: "Összesen", "Bruttó", "Bruttó összeg", "Végösszeg", "Összeg (bruttó)", "Fizetendő"
+    2. If multiple candidates exist, choose the one nearest a relevant keyword.
+    3. Remove all dots, commas, spaces, and currency symbols from the extracted number. Return only the numeric value as a number (e.g., 1000.50, not "1.000,50 HUF").
+    4. Do not attempt to sum line items — prefer an explicit total label.
+    5. If ambiguous, return "NOT_FOUND".
+
+- For totalCurrency:
+    1. Detect the currency unit closest to the total gross amount or its label.
+    2. Accept ISO codes (HUF, EUR, USD) or currency symbols (Ft, €, $, £) and normalize:
+        - HUF, Ft, forint → "HUF"
+        - EUR, €, euro → "EUR"
+        - USD, $, dollar → "USD"
+        - GBP, £, pound → "GBP"
+    3. If multiple currencies appear, select the one nearest the total gross label.
+    4. If no recognizable currency is present, return "NOT_FOUND".
+
+- For invoiceDate:
+    1. Prefer a date explicitly labelled as invoice/issue date. Common keywords:
+        - English: "Invoice date", "Date", "Issue date", "Date of issue"
+        - Hungarian: "Kelt", "Számla kelte", "Kibocsátás dátuma", "Dátum"
+    2. If multiple candidate dates exist (delivery date, due date, etc.), choose the one whose label indicates the invoice/issue date.
+    3. Accept date formats: `DD.MM.YYYY`, `D.M.YYYY`, `DD/MM/YYYY`, `DD-MM-YYYY`, `YYYY-MM-DD`, `Month DD, YYYY`, `DD Month YYYY`, and Hungarian month names.
+    4. For ambiguous numeric formats (e.g. `03/04/2025`), assume **day-month-year** unless the invoice clearly indicates US formatting.
+    5. Normalize output to `YYYY-MM-DD`.
+
+EXAMPLES:
+
+Input:
+<<<INVOICE_TEXT>>>
+"Invoice from: Alpha Trade Ltd.
+Invoice Date: 01.09.2025
+Total amount: 1.000,00 HUF"
+Output:
+{
+  "companyName": "Alpha Trade Ltd",
+  "totalGross": 1000.00,
+  "currency": "HUF",
+  "invoiceDate": "2025-09-01"
+}
+
+Input:
+<<<INVOICE_TEXT>>>
+"Supplier: Beta Systems Kft.
+Kibocsátás dátuma: 2025.09.01
+Összesen (bruttó): 1500 HUF"
+Output:
+{
+  "companyName": "Beta Systems Kft",
+  "totalGross": 1500.00,
+  "currency": "HUF"
+  "invoiceDate": "2025-09-01"
+}
