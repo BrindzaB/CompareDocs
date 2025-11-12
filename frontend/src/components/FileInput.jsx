@@ -5,7 +5,7 @@ import SmallFog from "./design/SmallFog";
 
 function FileInput({ id, invoice, onChange }) {
     return (
-        <div className="flex items-center justify-center min-w-[300px] lg:w-[400px]">
+        <div className="flex items-center justify-center min-w-[300px] lg:w-[350px] xl:w-[400px]">
             {!invoice ? (
                 <div className="flex items-center justify-center w-full h-96 lg:h-128 relative">
                     <AIFog />
