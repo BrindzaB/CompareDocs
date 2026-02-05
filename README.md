@@ -75,5 +75,8 @@ Open the Vite URL (usually `http://localhost:5173`).
 
 ## Screenshots
 ![Uploaded Documents](frontend/public/images/screenshots/docs_uploaded.png)
+Documents uploaded
 ![Comparison Result](frontend/public/images/screenshots/comparison_summary.png)
+Comparison result
 ![PDF export](frontend/public/images/screenshots/pdf_export.png)
+Exported pdf
